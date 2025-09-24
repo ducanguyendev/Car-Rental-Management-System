@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Thuê xe";
+    var car = ViewBag.Car as Hệ_thống_quản_lý_cho_thuê_xe.Models.Car;
+}
+
+<h2>Thuê xe: @car.Brand @car.Model (@car.LicensePlate)</h2>
+<p>Giá thuê: @string.Format("{0:N0} VND/ngày", car.PricePerDay)</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="carId" value="@car.CarId" />
+
+    <div class="form-group">
+        <label>Họ và tên</label>
+        <input type="text" name="FullName" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label>Số điện thoại</label>
+        <input type="text" name="Phone" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label>CMND/CCCD</label>
+        <input type="text" name="IdentityCard" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-success">Xác nhận thuê</button>
+}

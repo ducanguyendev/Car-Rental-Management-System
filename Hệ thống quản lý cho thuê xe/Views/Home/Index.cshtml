@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Hệ_thống_quản_lý_cho_thuê_xe.Models.Car>
+
+@{
+    ViewBag.Title = "Trang chủ - Thuê xe";
+}
+
+<h2 class="mb-4">Danh sách xe cho thuê</h2>
+
+<div class="row">
+    @foreach (var car in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <img 
+                     class="card-img-top"
+                     alt="@car.Brand @car.Model"
+                     style="height:200px; object-fit:cover;" />
+
+                <div class="card-body">
+                    <h5 class="card-title">@car.Brand @car.Model</h5>
+                    <p class="card-text">
+                        Biển số: @car.LicensePlate <br />
+                        Giá thuê: @string.Format("{0:N0} VND/ngày", car.PricePerDay)
+                    </p>
+                    <a href="@Url.Action("Create", "Reservation", new { carId = car.CarId })"
+                       class="btn btn-primary btn-sm">
+                        Thuê ngay
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

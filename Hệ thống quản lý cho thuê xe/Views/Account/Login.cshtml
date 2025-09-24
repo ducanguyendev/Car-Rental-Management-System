@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Đăng nhập";
+}
+
+<h2>Đăng nhập</h2>
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    <div>
+        <label>Tên đăng nhập</label>
+        @Html.TextBox("username", null, new { @class = "form-control" })
+    </div>
+
+    <div>
+        <label>Mật khẩu</label>
+        @Html.Password("password", null, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<hr />
+
+<p>
+    Bạn chưa có tài khoản?
+    @Html.ActionLink("Đăng ký ngay", "Register", "Account", null, new { @class = "btn btn-link p-0" }) |
+    @Html.ActionLink("Quên mật khẩu?", "ForgotPassword", "Account", null, new { @class = "btn btn-link p-0" })
+</p>
+
+

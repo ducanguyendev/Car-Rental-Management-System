@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Hệ_thống_quản_lý_cho_thuê_xe.Models.Car>
+
+@{
+    ViewBag.Title = "Tra cứu tình trạng xe";
+}
+
+<h2>🔍 Tra cứu tình trạng xe</h2>
+
+@using (Html.BeginForm("Index", "Status", FormMethod.Get))
+{
+    <p>
+        Nhập biển số hoặc hãng xe: @Html.TextBox("searchString")
+        <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
+    </p>
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Biển số</th>
+            <th>Hãng xe</th>
+            <th>Model</th>
+            <th>Giá thuê/ngày</th>
+            <th>Tình trạng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.LicensePlate</td>
+                <td>@item.Brand</td>
+                <td>@item.Model</td>
+                <td>@String.Format("{0:N0}", item.PricePerDay)</td>
+                <td>
+                    @if (item.Status == "Available")
+                    {
+                        <span class="badge bg-success">Còn trống</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Đã thuê</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

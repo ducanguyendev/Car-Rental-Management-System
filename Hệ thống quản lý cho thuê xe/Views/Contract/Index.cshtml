@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Hợp đồng thuê xe";
+}
+<h2>📑 Lập hợp đồng thuê xe</h2>
+
+<form>
+    <div class="form-group">
+        <label>Tên khách hàng</label>
+        <input type="text" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Xe thuê</label>
+        <input type="text" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Số lượng</label>
+        <input type="number" class="form-control" min="1" />
+    </div>
+    <div class="form-group">
+        <label>Ngày thuê</label>
+        <input type="date" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Ngày trả</label>
+        <input type="date" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Tạo hợp đồng</button>
+</form>

@@ -1,0 +1,34 @@
+﻿@model Hệ_thống_quản_lý_cho_thuê_xe.Models.Customer
+
+@{
+    ViewBag.Title = "Chi tiết khách hàng";
+}
+
+<h2>Chi tiết khách hàng</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading"><b>Thông tin khách hàng</b></div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>Họ tên</dt>
+            <dd>@Model.FullName</dd>
+
+            <dt>Số CMND/CCCD</dt>
+            <dd>@Model.IdentityCard</dd>
+
+            <dt>Điện thoại</dt>
+            <dd>@Model.Phone</dd>
+
+            <dt>Xe đang thuê</dt>
+            <dd>
+                @(Model.Car != null
+                    ? (Model.Car.Brand + " " + Model.Car.Model)
+                    : "Chưa thuê")
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-default" })
+</p>

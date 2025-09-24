@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Hệ_thống_quản_lý_cho_thuê_xe.Models.Customer>
+
+@{
+    ViewBag.Title = "Quản lý khách hàng";
+}
+
+<h2>Quản lý thông tin khách hàng</h2>
+
+<p>
+    @Html.ActionLink("Thêm khách hàng", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Họ tên</th>
+            <th>Số CMND/CCCD</th>
+            <th>Điện thoại</th>
+            <th>Dòng xe đang thuê</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FullName</td>
+                <td>@item.IdentityCard</td>
+                <td>@item.Phone</td>
+                <td>
+                    @(item.Car != null ? (item.Car.Brand + " " + item.Car.Model) : "Chưa thuê")
+                </td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.CustomerId }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.CustomerId }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.CustomerId }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

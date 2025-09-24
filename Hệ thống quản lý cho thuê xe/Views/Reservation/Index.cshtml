@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Hệ_thống_quản_lý_cho_thuê_xe.Models.Car>
+@{
+    ViewBag.Title = "Cho Thuê Xe";
+}
+
+<h2>Cho Thuê Xe</h2>
+
+<!-- Thanh chọn hãng -->
+@using (Html.BeginForm("Rent", "Car", FormMethod.Get))
+{
+    <label>Chọn hãng xe: </label>
+    @Html.DropDownList("brand", (SelectList)ViewBag.Brands, "All", new { @class = "form-control", style = "width:200px; display:inline;" })
+    <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
+}
+
+<hr />
+
+<table class="table table-bordered">
+    <tr>
+        <th>Biển số</th>
+        <th>Hãng</th>
+        <th>Model</th>
+        <th>Giá thuê/ngày</th>
+        <th>Trạng thái</th>
+        <th></th>
+    </tr>
+    @foreach (var car in Model)
+    {
+        <tr>
+            <td>@car.LicensePlate</td>
+            <td>@car.Brand</td>
+            <td>@car.Model</td>
+            <td>@string.Format("{0:N0} VND", car.PricePerDay)</td>
+            <td>@car.Status</td>
+            <td>
+                @if (car.Status == "Available")
+                {
+                    @Html.ActionLink("Thuê ngay", "Create", "Reservation", new { carId = car.CarId }, new { @class = "btn btn-success" })
+                }
+                else
+                {
+                    <span class="text-danger">Đang thuê</span>
+                }
+            </td>
+        </tr>
+    }
+</table>

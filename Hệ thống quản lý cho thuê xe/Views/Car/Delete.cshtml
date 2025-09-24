@@ -1,0 +1,24 @@
+﻿@model Hệ_thống_quản_lý_cho_thuê_xe.Models.Car
+@{
+    ViewBag.Title = "Xóa xe";
+}
+
+<h2>Bạn có chắc chắn muốn xóa xe này?</h2>
+
+<table class="table table-bordered">
+    <tr><th>Biển số</th><td>@Model.LicensePlate</td></tr>
+    <tr><th>Hãng</th><td>@Model.Brand</td></tr>
+    <tr><th>Model</th><td>@Model.Model</td></tr>
+    <tr><th>Giá/ngày</th><td>@String.Format("{0:N0} VND", Model.PricePerDay)</td></tr>
+    <tr><th>Trạng thái</th><td>@Model.Status</td></tr>
+</table>
+
+@using (Html.BeginForm("Delete", "Car", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.CarId)
+
+    <button type="submit" class="btn btn-danger">🗑️ Xóa</button>
+    <span> | </span>
+    @Html.ActionLink("⬅️ Quay lại", "Index")
+}

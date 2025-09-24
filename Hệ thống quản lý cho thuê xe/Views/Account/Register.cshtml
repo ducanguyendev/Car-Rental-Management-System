@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Đăng ký";
+}
+
+<h2>Đăng ký</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    <div class="form-group">
+        <label for="username">Tên đăng nhập</label>
+        @Html.TextBox("username", null, new { @class = "form-control", required = "required", placeholder = "Nhập tên đăng nhập" })
+    </div>
+
+    <div class="form-group">
+        <label for="password">Mật khẩu</label>
+        @Html.Password("password", null, new { @class = "form-control", required = "required", placeholder = "Nhập mật khẩu" })
+    </div>
+
+    <div class="form-group">
+        <label for="fullname">Họ và tên</label>
+        @Html.TextBox("fullname", null, new { @class = "form-control", required = "required", placeholder = "Nhập họ tên đầy đủ" })
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        @Html.TextBox("email", null, new
+        {
+            @class = "form-control",
+            required = "required",
+            type = "email",
+            pattern = @"^[^@\s]+@email\.com$",
+            placeholder = "Nhập email (ví dụ: ten@email.com)",
+            title = "Email phải có dạng ...@email.com"
+        })
+    </div>
+
+    <button type="submit" class="btn btn-success">Đăng ký</button>
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger mt-3">@ViewBag.Error</div>
+}
+
+<hr />
+
+<p>
+    Bạn đã có tài khoản?
+    @Html.ActionLink("Đăng nhập", "Login", "Account", null, new { @class = "btn btn-link" })
+</p>

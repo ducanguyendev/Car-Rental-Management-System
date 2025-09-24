@@ -1,0 +1,31 @@
+﻿@model Hệ_thống_quản_lý_cho_thuê_xe.Models.Customer
+
+@{
+    ViewBag.Title = "Xóa khách hàng";
+}
+
+<h2>Xóa khách hàng</h2>
+
+<h3>Bạn có chắc chắn muốn xóa khách hàng này?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>Họ tên</dt>
+        <dd>@Model.FullName</dd>
+
+        <dt>Số CMND/CCCD</dt>
+        <dd>@Model.IdentityCard</dd>
+
+        <dt>Điện thoại</dt>
+        <dd>@Model.Phone</dd>
+
+        <dt>Xe đang thuê</dt>
+        <dd>@(Model.Car != null ? (Model.Car.Brand + " " + Model.Car.Model) : "Chưa thuê")</dd>
+    </dl>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-default" })
+}

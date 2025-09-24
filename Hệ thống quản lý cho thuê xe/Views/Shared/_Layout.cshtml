@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Hệ thống cho thuê xe</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("🚗 Cho Thuê Xe", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Trang chủ", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Quản lý xe", "Index", "Car", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Tra cứu tình trạng xe", "Index", "Status", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Khách hàng", "Index", "Customer", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Đặt xe trước", "Index", "Reservation", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Thông báo", "Index", "Notification", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Hợp đồng thuê", "Index", "Contract", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container body-content mt-3">
+        @RenderBody()
+        <hr />
+        <footer class="text-center text-muted">
+            <p>&copy; @DateTime.Now.Year - Hệ thống quản lý cho thuê xe</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

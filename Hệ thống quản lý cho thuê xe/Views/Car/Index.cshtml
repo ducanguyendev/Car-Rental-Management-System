@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Hệ_thống_quản_lý_cho_thuê_xe.Models.Car>
+
+@{
+    ViewBag.Title = "Quản lý xe";
+}
+
+<h2>Quản lý xe</h2>
+
+<p>
+    @Html.ActionLink("➕ Thêm xe mới", "Create")
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Biển số</th>
+            <th>Hãng</th>
+            <th>Model</th>
+            <th>Giá thuê/ngày</th>
+            <th>Trạng thái</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var car in Model)
+        {
+            <tr>
+                <td>@car.LicensePlate</td>
+                <td>@car.Brand</td>
+                <td>@car.Model</td>
+                <td>@string.Format("{0:N0} VND", car.PricePerDay)</td>
+                <td>@car.Status</td>
+                <td>
+                    @Html.ActionLink("✏️ Sửa", "Edit", new { id = car.CarId }) |
+                    @Html.ActionLink("🔍 Chi tiết", "Details", new { id = car.CarId }) |
+                    @Html.ActionLink("🗑️ Xóa", "Delete", new { id = car.CarId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

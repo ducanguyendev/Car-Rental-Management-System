@@ -1,0 +1,235 @@
+@model List<QuanLyChoThueXe.Models.Booking>
+@{
+    ViewData["Title"] = "Quản Lý Đặt Xe";
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="mb-1">
+                        <i class="fas fa-calendar-check text-primary me-2"></i>
+                        Quản Lý Đặt Xe
+                    </h2>
+                    <p class="text-muted mb-0">Danh sách các phiếu đặt xe của bạn</p>
+                </div>
+                <div>
+                    <a asp-action="SearchCars" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>
+                        Đặt Xe Mới
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <!-- Bookings List -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header py-3 bg-primary text-white">
+                    <h6 class="m-0 font-weight-bold">
+                        <i class="fas fa-list me-2"></i>
+                        Danh Sách Đặt Xe (@Model.Count phiếu)
+                    </h6>
+                </div>
+                <div class="card-body">
+                    @if (Model.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Mã Đặt Xe</th>
+                                        <th>Xe</th>
+                                        <th>Ngày Nhận</th>
+                                        <th>Ngày Trả</th>
+                                        <th>Số Ngày</th>
+                                        <th>Tổng Tiền</th>
+                                        <th>Trạng Thái</th>
+                                        <th>Thao Tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var booking in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <strong>#@booking.Id</strong>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <strong>@booking.Car.Name</strong><br>
+                                                    <small class="text-muted">@booking.Car.LicensePlate</small>
+                                                </div>
+                                            </td>
+                                            <td>@booking.StartDate.ToString("dd/MM/yyyy")</td>
+                                            <td>@booking.EndDate.ToString("dd/MM/yyyy")</td>
+                                            <td>@booking.RentalDays ngày</td>
+                                            <td>
+                                                <strong class="text-primary">@booking.TotalPrice.ToString("N0") VNĐ</strong>
+                                            </td>
+                                            <td>
+                                                @switch (booking.Status)
+                                                {
+                                                    case BookingStatus.Pending:
+                                                        <span class="badge bg-warning">Chờ xử lý</span>
+                                                        break;
+                                                    case BookingStatus.Confirmed:
+                                                        <span class="badge bg-success">Đã xác nhận</span>
+                                                        break;
+                                                    case BookingStatus.Cancelled:
+                                                        <span class="badge bg-secondary">Đã hủy</span>
+                                                        break;
+                                                    case BookingStatus.Completed:
+                                                        <span class="badge bg-info">Hoàn thành</span>
+                                                        break;
+                                                    case BookingStatus.Expired:
+                                                        <span class="badge bg-danger">Hết hạn</span>
+                                                        break;
+                                                    default:
+                                                        <span class="badge bg-secondary">@booking.Status</span>
+                                                        break;
+                                                }
+                                            </td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <button type="button" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#bookingModal@(booking.Id)">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                    @if (booking.Status == BookingStatus.Pending || booking.Status == BookingStatus.Confirmed)
+                                                    {
+                                                        <form asp-action="CancelBooking" method="post" class="d-inline">
+                                                            <input type="hidden" name="id" value="@booking.Id" />
+                                                            <button type="submit" class="btn btn-sm btn-outline-danger" 
+                                                                    onclick="return confirm('Bạn có chắc chắn muốn hủy phiếu đặt xe này?')">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </form>
+                                                    }
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Booking Detail Modal -->
+                                        <div class="modal fade" id="bookingModal@(booking.Id)" tabindex="-1">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">
+                                                            <i class="fas fa-calendar-check me-2"></i>
+                                                            Chi Tiết Đặt Xe #@booking.Id
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <h6 class="text-primary">Thông Tin Xe</h6>
+                                                                <p><strong>Tên xe:</strong> @booking.Car.Name</p>
+                                                                <p><strong>Biển số:</strong> @booking.Car.LicensePlate</p>
+                                                                <p><strong>Loại xe:</strong> @booking.Car.Type</p>
+                                                                <p><strong>Số chỗ:</strong> @booking.Car.Seats chỗ</p>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <h6 class="text-primary">Thông Tin Đặt Xe</h6>
+                                                                <p><strong>Ngày nhận:</strong> @booking.StartDate.ToString("dd/MM/yyyy")</p>
+                                                                <p><strong>Ngày trả:</strong> @booking.EndDate.ToString("dd/MM/yyyy")</p>
+                                                                <p><strong>Số ngày:</strong> @booking.RentalDays ngày</p>
+                                                                <p><strong>Tổng tiền:</strong> <span class="text-primary fw-bold">@booking.TotalPrice.ToString("N0") VNĐ</span></p>
+                                                            </div>
+                                                        </div>
+                                                        @if (!string.IsNullOrEmpty(booking.Notes))
+                                                        {
+                                                            <hr>
+                                                            <h6 class="text-primary">Ghi Chú</h6>
+                                                            <p>@booking.Notes</p>
+                                                        }
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <p><strong>Ngày đặt:</strong> @booking.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <p><strong>Trạng thái:</strong> 
+                                                                @switch (booking.Status)
+                                                                {
+                                                                    case BookingStatus.Pending:
+                                                                        <span class="badge bg-warning">Chờ xử lý</span>
+                                                                        break;
+                                                                    case BookingStatus.Confirmed:
+                                                                        <span class="badge bg-success">Đã xác nhận</span>
+                                                                        break;
+                                                                    case BookingStatus.Cancelled:
+                                                                        <span class="badge bg-secondary">Đã hủy</span>
+                                                                        break;
+                                                                    case BookingStatus.Completed:
+                                                                        <span class="badge bg-info">Hoàn thành</span>
+                                                                        break;
+                                                                    case BookingStatus.Expired:
+                                                                        <span class="badge bg-danger">Hết hạn</span>
+                                                                        break;
+                                                                }
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                                        @if (booking.Status == BookingStatus.Pending || booking.Status == BookingStatus.Confirmed)
+                                                        {
+                                                            <form asp-action="CancelBooking" method="post" class="d-inline">
+                                                                <input type="hidden" name="id" value="@booking.Id" />
+                                                                <button type="submit" class="btn btn-danger" 
+                                                                        onclick="return confirm('Bạn có chắc chắn muốn hủy phiếu đặt xe này?')">
+                                                                    <i class="fas fa-times me-1"></i>
+                                                                    Hủy Đặt Xe
+                                                                </button>
+                                                            </form>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <i class="fas fa-calendar-times fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">Chưa có phiếu đặt xe nào</h5>
+                            <p class="text-muted">Hãy tìm kiếm và đặt xe ngay!</p>
+                            <a asp-action="SearchCars" class="btn btn-primary">
+                                <i class="fas fa-search me-2"></i>
+                                Tìm Kiếm Xe
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

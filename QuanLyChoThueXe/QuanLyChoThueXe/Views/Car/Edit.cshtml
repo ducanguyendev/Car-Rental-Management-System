@@ -1,0 +1,171 @@
+@model QuanLyChoThueXe.Models.Car
+
+@{
+    ViewData["Title"] = "Sửa Thông Tin Xe";
+}
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h2 class="text-primary mb-0">
+            <i class="fas fa-edit me-2"></i>
+            Sửa Thông Tin Xe
+        </h2>
+        <p class="text-muted">Cập nhật thông tin chi tiết của xe</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                    
+                    <input asp-for="Id" type="hidden" />
+                    <input asp-for="CreatedAt" type="hidden" />
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Name" class="form-label">Tên xe <span class="text-danger">*</span></label>
+                            <input asp-for="Name" class="form-control" placeholder="Ví dụ: Toyota Vios" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="LicensePlate" class="form-label">Biển số xe <span class="text-danger">*</span></label>
+                            <input asp-for="LicensePlate" class="form-control" placeholder="Ví dụ: 30A-12345" />
+                            <span asp-validation-for="LicensePlate" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Brand" class="form-label">Hãng xe <span class="text-danger">*</span></label>
+                            <input asp-for="Brand" class="form-control" placeholder="Ví dụ: Toyota" />
+                            <span asp-validation-for="Brand" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Model" class="form-label">Model <span class="text-danger">*</span></label>
+                            <input asp-for="Model" class="form-control" placeholder="Ví dụ: Vios" />
+                            <span asp-validation-for="Model" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Year" class="form-label">Năm sản xuất <span class="text-danger">*</span></label>
+                            <input asp-for="Year" type="number" class="form-control" min="1990" max="2025" />
+                            <span asp-validation-for="Year" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Type" class="form-label">Loại xe <span class="text-danger">*</span></label>
+                            <select asp-for="Type" class="form-select">
+                                <option value="">Chọn loại xe</option>
+                                <option value="Sedan">Sedan</option>
+                                <option value="SUV">SUV</option>
+                                <option value="Hatchback">Hatchback</option>
+                                <option value="Pickup">Pickup</option>
+                                <option value="Coupe">Coupe</option>
+                                <option value="Convertible">Convertible</option>
+                                <option value="Minivan">Minivan</option>
+                                <option value="Wagon">Wagon</option>
+                            </select>
+                            <span asp-validation-for="Type" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Seats" class="form-label">Số chỗ ngồi <span class="text-danger">*</span></label>
+                            <input asp-for="Seats" type="number" class="form-control" min="2" max="50" />
+                            <span asp-validation-for="Seats" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="FuelType" class="form-label">Loại nhiên liệu <span class="text-danger">*</span></label>
+                            <select asp-for="FuelType" class="form-select">
+                                <option value="">Chọn loại nhiên liệu</option>
+                                <option value="Xăng">Xăng</option>
+                                <option value="Dầu">Dầu</option>
+                                <option value="Điện">Điện</option>
+                                <option value="Hybrid">Hybrid</option>
+                                <option value="LPG">LPG</option>
+                            </select>
+                            <span asp-validation-for="FuelType" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="PricePerDay" class="form-label">Giá thuê/ngày (VNĐ) <span class="text-danger">*</span></label>
+                            <input asp-for="PricePerDay" type="number" class="form-control" min="0" step="1000" />
+                            <span asp-validation-for="PricePerDay" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Status" class="form-label">Trạng thái</label>
+                            <select asp-for="Status" class="form-select">
+                                <option value="@CarStatus.Available">Có sẵn</option>
+                                <option value="@CarStatus.Rented">Đang thuê</option>
+                                <option value="@CarStatus.Reserved">Đã đặt trước</option>
+                                <option value="@CarStatus.Maintenance">Bảo trì</option>
+                                <option value="@CarStatus.OutOfService">Ngừng hoạt động</option>
+                            </select>
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ImageUrl" class="form-label">Đường dẫn hình ảnh</label>
+                        <input asp-for="ImageUrl" class="form-control" placeholder="https://example.com/image.jpg" />
+                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label">Mô tả</label>
+                        <textarea asp-for="Description" class="form-control" rows="3" placeholder="Mô tả chi tiết về xe..."></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Quay lại
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-2"></i>Cập nhật
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Lưu ý
+                </h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <i class="fas fa-exclamation-triangle text-warning me-2"></i>
+                        <strong>Trạng thái:</strong> Thay đổi trạng thái xe sẽ ảnh hưởng đến khả năng thuê
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-exclamation-triangle text-warning me-2"></i>
+                        <strong>Giá thuê:</strong> Giá mới sẽ áp dụng cho các hợp đồng mới
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        <strong>Lịch sử:</strong> Thông tin cũ sẽ được lưu trong hệ thống
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+

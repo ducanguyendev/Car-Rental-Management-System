@@ -1,0 +1,140 @@
+@model IEnumerable<QuanLyChoThueXe.Models.Booking>
+@{
+    ViewData["Title"] = "Quản Lý Đặt Xe";
+}
+
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary"><i class="fas fa-calendar-alt me-2"></i>Quản Lý Đặt Xe</h2>
+        <a href="@Url.Action("Create", "Booking")" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Tạo Đặt Xe Mới
+        </a>
+    </div>
+
+    <!-- Search and Filter -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Tìm kiếm</label>
+                    <input type="text" name="searchString" class="form-control" value="@ViewBag.SearchString" placeholder="Tên khách hàng, biển số xe...">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Trạng thái</label>
+                    <select name="statusFilter" class="form-select">
+                        <option value="">Tất cả</option>
+                        @foreach (var status in ViewBag.BookingStatuses)
+                        {
+                            <option value="@status" selected="@(ViewBag.StatusFilter == status)">@status</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-search me-2"></i>Tìm kiếm
+                    </button>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <a href="@Url.Action("Index")" class="btn btn-outline-secondary w-100">
+                        <i class="fas fa-redo me-2"></i>Reset
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Booking List -->
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Khách hàng</th>
+                            <th>Xe</th>
+                            <th>Ngày bắt đầu</th>
+                            <th>Ngày kết thúc</th>
+                            <th>Số ngày</th>
+                            <th>Tổng tiền</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var booking in Model)
+                        {
+                            <tr>
+                                <td>@booking.Id</td>
+                                <td>@booking.Customer.FullName</td>
+                                <td>
+                                    <div>@booking.Car.Name</div>
+                                    <small class="text-muted">@booking.Car.LicensePlate</small>
+                                </td>
+                                <td>@booking.StartDate.ToString("dd/MM/yyyy")</td>
+                                <td>@booking.EndDate.ToString("dd/MM/yyyy")</td>
+                                <td>@booking.RentalDays ngày</td>
+                                <td>@booking.TotalPrice.ToString("N0") VNĐ</td>
+                                <td>
+                                    @switch (booking.Status)
+                                    {
+                                        case QuanLyChoThueXe.Models.BookingStatus.Pending:
+                                            <span class="badge bg-warning">Chờ xử lý</span>
+                                            break;
+                                        case QuanLyChoThueXe.Models.BookingStatus.Confirmed:
+                                            <span class="badge bg-success">Đã xác nhận</span>
+                                            break;
+                                        case QuanLyChoThueXe.Models.BookingStatus.Cancelled:
+                                            <span class="badge bg-danger">Đã hủy</span>
+                                            break;
+                                        default:
+                                            <span class="badge bg-secondary">@booking.Status</span>
+                                            break;
+                                    }
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a href="@Url.Action("Details", "Booking", new { id = booking.Id })" class="btn btn-sm btn-info" title="Chi tiết">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        @if (booking.Status == QuanLyChoThueXe.Models.BookingStatus.Pending)
+                                        {
+                                            <form asp-action="Confirm" method="post" class="d-inline">
+                                                <input type="hidden" name="id" value="@booking.Id" />
+                                                <button type="submit" class="btn btn-sm btn-success" title="Xác nhận" onclick="return confirm('Xác nhận đặt xe này sẽ tạo hợp đồng tự động?');">
+                                                    <i class="fas fa-check"></i>
+                                                </button>
+                                            </form>
+                                        }
+                                        else if (booking.Status == QuanLyChoThueXe.Models.BookingStatus.Confirmed)
+                                        {
+                                            <span></span>
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["ContractId"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contractId = @TempData["ContractId"];
+            const successAlert = document.querySelector('.alert-success');
+            if (successAlert) {
+                const link = document.createElement('a');
+                link.href = '@Url.Action("Details", "RentalContract")/' + contractId;
+                link.className = 'btn btn-sm btn-outline-primary ms-2';
+                link.innerHTML = '<i class="fas fa-file-contract me-1"></i>Xem hợp đồng';
+                successAlert.appendChild(link);
+            }
+        });
+    </script>
+}
+

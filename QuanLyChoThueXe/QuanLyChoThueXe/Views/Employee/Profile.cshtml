@@ -1,0 +1,102 @@
+@model QuanLyChoThueXe.Models.Employee
+@{
+    ViewData["Title"] = "Hồ Sơ Cá Nhân";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white">
+                    <h4 class="mb-0"><i class="fas fa-user me-2"></i>Hồ Sơ Cá Nhân</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="avatar-lg bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-user fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h4 class="mb-1">@ViewBag.Username</h4>
+                                    <p class="text-muted mb-0">@ViewBag.Email</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted small">Họ Tên</label>
+                            <p class="fw-bold">@Model.FullName</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted small">Ngày Sinh</label>
+                            <p class="fw-bold">@Model.DateOfBirth.ToString("dd/MM/yyyy")</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted small">Giới Tính</label>
+                            <p class="fw-bold">@(Model.Gender == QuanLyChoThueXe.Models.Gender.Male ? "Nam" : "Nữ")</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted small">CMND/CCCD</label>
+                            <p class="fw-bold">@Model.IdentityNumber</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted small">Điện Thoại</label>
+                            <p class="fw-bold">@Model.PhoneNumber</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted small">Email</label>
+                            <p class="fw-bold">@Model.Email</p>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label text-muted small">Địa Chỉ</label>
+                            <p class="fw-bold">@Model.Address</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted small">Vị Trí</label>
+                            <p class="fw-bold">@Model.Position</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted small">Phòng Ban</label>
+                            <p class="fw-bold">@Model.Department</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted small">Ngày Vào Làm</label>
+                            <p class="fw-bold">@Model.HireDate.ToString("dd/MM/yyyy")</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted small">Lương</label>
+                            <p class="fw-bold">@Model.Salary.ToString("N0") VNĐ</p>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label text-muted small">Trạng Thái</label>
+                            <p class="mb-0">
+                                @if (Model.Status == QuanLyChoThueXe.Models.EmployeeStatus.Active)
+                                {
+                                    <span class="badge bg-success">Hoạt Động</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Ngừng Hoạt Động</span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <a href="@Url.Action("ChangePassword")" class="btn btn-primary me-2">
+                            <i class="fas fa-key me-2"></i>Đổi Mật Khẩu
+                        </a>
+                        <a href="@Url.Action("Index")" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Quay Lại
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

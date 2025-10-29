@@ -1,0 +1,252 @@
+@model QuanLyChoThueXe.Models.CustomerDashboardViewModel
+@{
+    ViewData["Title"] = "Trang Chủ - Khách Hàng";
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="mb-1">
+                        <i class="fas fa-home text-primary me-2"></i>
+                        Trang Chủ
+                    </h2>
+                    <p class="text-muted mb-0">Xin chào, @Model.Customer.FullName!</p>
+                </div>
+                <div class="text-end">
+                    <small class="text-muted">Khách hàng</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Tổng Đặt Xe
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalBookings</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar-check fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Chờ Xử Lý
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.PendingBookings</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clock fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Hợp Đồng Hoạt Động
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.ActiveContracts</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-file-contract fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                Thông Báo Mới
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-bell fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="row">
+        <!-- Recent Bookings -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-primary text-white">
+                    <h6 class="m-0 font-weight-bold">
+                        <i class="fas fa-calendar-check me-2"></i>
+                        Đặt Xe Gần Đây
+                    </h6>
+                    <a asp-action="Bookings" class="btn btn-sm btn-light">
+                        <i class="fas fa-eye me-1"></i>
+                        Xem Tất Cả
+                    </a>
+                </div>
+                <div class="card-body">
+                    @if (Model.RecentBookings.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Xe</th>
+                                        <th>Ngày Đặt</th>
+                                        <th>Trạng Thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var booking in Model.RecentBookings)
+                                    {
+                                        <tr>
+                                            <td>@booking.Car.Name</td>
+                                            <td>@booking.StartDate.ToString("dd/MM/yyyy")</td>
+                                            <td>
+                                                <span class="badge badge-@(booking.Status == BookingStatus.Pending ? "warning" : booking.Status == BookingStatus.Confirmed ? "success" : "secondary")">
+                                                    @booking.Status.ToString()
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center text-muted py-3">
+                            <i class="fas fa-calendar-times fa-3x mb-3"></i>
+                            <p>Chưa có đặt xe nào</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Contracts -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-success text-white">
+                    <h6 class="m-0 font-weight-bold">
+                        <i class="fas fa-file-contract me-2"></i>
+                        Hợp Đồng Gần Đây
+                    </h6>
+                    <a asp-action="Contracts" class="btn btn-sm btn-light">
+                        <i class="fas fa-eye me-1"></i>
+                        Xem Tất Cả
+                    </a>
+                </div>
+                <div class="card-body">
+                    @if (Model.RecentContracts.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Mã HĐ</th>
+                                        <th>Xe</th>
+                                        <th>Ngày Bắt Đầu</th>
+                                        <th>Trạng Thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var contract in Model.RecentContracts)
+                                    {
+                                        <tr>
+                                            <td>@contract.ContractNumber</td>
+                                            <td>@contract.Car.Name</td>
+                                            <td>@contract.StartDate.ToString("dd/MM/yyyy")</td>
+                                            <td>
+                                                <span class="badge badge-@(contract.Status == ContractStatus.Active ? "success" : "secondary")">
+                                                    @contract.Status.ToString()
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center text-muted py-3">
+                            <i class="fas fa-file-contract fa-3x mb-3"></i>
+                            <p>Chưa có hợp đồng nào</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header py-3 bg-light">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        <i class="fas fa-bolt me-2"></i>
+                        Thao Tác Nhanh
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <a asp-action="SearchCars" class="btn btn-primary btn-block">
+                                <i class="fas fa-search me-2"></i>
+                                Tìm Kiếm Xe
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <a asp-action="Bookings" class="btn btn-warning btn-block">
+                                <i class="fas fa-calendar-check me-2"></i>
+                                Đặt Xe Của Tôi
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <a asp-action="Contracts" class="btn btn-success btn-block">
+                                <i class="fas fa-file-contract me-2"></i>
+                                Hợp Đồng Của Tôi
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <a asp-action="Profile" class="btn btn-info btn-block">
+                                <i class="fas fa-user me-2"></i>
+                                Hồ Sơ Cá Nhân
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

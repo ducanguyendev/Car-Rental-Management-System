@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Hệ Thống Quản Lý Cho Thuê Xe</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/QuanLyChoThueXe.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        .navbar-brand {
+            font-weight: bold;
+            color: #007bff !important;
+        }
+        .sidebar {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .sidebar .nav-link {
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin: 2px 0;
+            transition: all 0.3s ease;
+        }
+        .sidebar .nav-link:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            transform: translateX(5px);
+        }
+        .sidebar .nav-link.active {
+            background-color: rgba(255,255,255,0.2);
+            color: white;
+        }
+        .main-content {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .stat-card .card-body {
+            padding: 1.5rem;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 25px;
+            padding: 10px 25px;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .table {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .table thead th {
+            background-color: #667eea;
+            color: white;
+            border: none;
+        }
+        .badge {
+            border-radius: 20px;
+            padding: 5px 12px;
+        }
+        .alert {
+            border-radius: 10px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-2 sidebar p-0">
+                <div class="p-3">
+                    <h4 class="text-white text-center mb-4">
+                        <i class="fas fa-car"></i> Quản Lý Xe
+                    </h4>
+                </div>
+                <nav class="nav flex-column px-3">
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <!-- Admin Menu -->
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" ? "active" : "")" asp-controller="Home" asp-action="Index">
+                                <i class="fas fa-home me-2"></i> Trang Chủ
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Admin" ? "active" : "")" asp-controller="Admin" asp-action="Index">
+                                <i class="fas fa-crown me-2"></i> Quản Trị
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Car" ? "active" : "")" asp-controller="Car" asp-action="Index">
+                                <i class="fas fa-car me-2"></i> Quản Lý Xe
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Customer" ? "active" : "")" asp-controller="Customer" asp-action="Index">
+                                <i class="fas fa-users me-2"></i> Quản Lý Khách Hàng
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Booking" ? "active" : "")" asp-controller="Booking" asp-action="Index">
+                                <i class="fas fa-calendar-check me-2"></i> Đặt Xe Trước
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "RentalContract" ? "active" : "")" asp-controller="RentalContract" asp-action="Index">
+                                <i class="fas fa-file-contract me-2"></i> Hợp Đồng Thuê
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Notification" ? "active" : "")" asp-controller="Notification" asp-action="Index">
+                                <i class="fas fa-bell me-2"></i> Thông Báo
+                            </a>
+                        }
+                        else if (User.IsInRole("Customer"))
+                        {
+                            <!-- Customer Menu -->
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Customer" && ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "active" : "")" asp-controller="Customer" asp-action="Index">
+                                <i class="fas fa-home me-2"></i> Trang Chủ
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Customer" && ViewContext.RouteData.Values["Action"]?.ToString() == "SearchCars" ? "active" : "")" asp-controller="Customer" asp-action="SearchCars">
+                                <i class="fas fa-search me-2"></i> Tìm Kiếm Xe
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Customer" && ViewContext.RouteData.Values["Action"]?.ToString() == "Bookings" ? "active" : "")" asp-controller="Customer" asp-action="Bookings">
+                                <i class="fas fa-calendar-check me-2"></i> Đặt Xe Của Tôi
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Customer" && ViewContext.RouteData.Values["Action"]?.ToString() == "Contracts" ? "active" : "")" asp-controller="Customer" asp-action="Contracts">
+                                <i class="fas fa-file-contract me-2"></i> Hợp Đồng Của Tôi
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Customer" && ViewContext.RouteData.Values["Action"]?.ToString() == "Profile" ? "active" : "")" asp-controller="Customer" asp-action="Profile">
+                                <i class="fas fa-user me-2"></i> Hồ Sơ Cá Nhân
+                            </a>
+                        }
+                        else
+                        {
+                            <!-- Employee Menu -->
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" ? "active" : "")" asp-controller="Home" asp-action="Index">
+                                <i class="fas fa-home me-2"></i> Trang Chủ
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Car" ? "active" : "")" asp-controller="Car" asp-action="Index">
+                                <i class="fas fa-car me-2"></i> Quản Lý Xe
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Booking" ? "active" : "")" asp-controller="Booking" asp-action="Index">
+                                <i class="fas fa-calendar-check me-2"></i> Đặt Xe Trước
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "RentalContract" ? "active" : "")" asp-controller="RentalContract" asp-action="Index">
+                                <i class="fas fa-file-contract me-2"></i> Hợp Đồng Thuê
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Notification" ? "active" : "")" asp-controller="Notification" asp-action="Index">
+                                <i class="fas fa-bell me-2"></i> Thông Báo
+                            </a>
+                        }
+                    }
+                    else
+                    {
+                        <!-- Guest Menu -->
+                        <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" ? "active" : "")" asp-controller="Home" asp-action="Index">
+                            <i class="fas fa-home me-2"></i> Trang Chủ
+                        </a>
+                        <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Car" ? "active" : "")" asp-controller="Car" asp-action="Index">
+                            <i class="fas fa-car me-2"></i> Xem Xe
+                        </a>
+                    }
+                </nav>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-10 main-content">
+                <header>
+                    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+                        <div class="container-fluid">
+                            <h5 class="mb-0 text-primary">@ViewData["Title"]</h5>
+                            <div class="navbar-nav ms-auto">
+                                @if (User.Identity?.IsAuthenticated == true)
+                                {
+                                    <div class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                                            <i class="fas fa-user-circle me-1"></i>
+                                            @User.Identity.Name
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            @if (User.IsInRole("Customer"))
+                                            {
+                                                <li><a class="dropdown-item" asp-controller="Customer" asp-action="Profile">
+                                                    <i class="fas fa-user me-2"></i>Hồ sơ cá nhân
+                                                </a></li>
+                                                <li><a class="dropdown-item" asp-controller="Customer" asp-action="ChangePassword">
+                                                    <i class="fas fa-key me-2"></i>Đổi mật khẩu
+                                                </a></li>
+                                            }
+                                            else
+                                            {
+                                                <li><a class="dropdown-item" asp-controller="Auth" asp-action="ChangePassword">
+                                                    <i class="fas fa-key me-2"></i>Đổi mật khẩu
+                                                </a></li>
+                                            }
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li>
+                                                <form asp-controller="Auth" asp-action="Logout" method="post" style="margin: 0;">
+                                                    <button type="submit" class="dropdown-item text-danger" style="border: none; background: none; width: 100%; text-align: left;">
+                                                        <i class="fas fa-sign-out-alt me-2"></i>Đăng xuất
+                                                    </button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="nav-item">
+                                        <a class="nav-link" asp-controller="Auth" asp-action="Login">
+                                            <i class="fas fa-sign-in-alt me-1"></i>Đăng nhập
+                                        </a>
+                                    </div>
+                                    <div class="nav-item">
+                                        <a class="nav-link" asp-controller="Auth" asp-action="Register">
+                                            <i class="fas fa-user-plus me-1"></i>Đăng ký
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </nav>
+                </header>
+
+                <div class="container-fluid p-4">
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="fas fa-check-circle me-2"></i>
+                            @TempData["SuccessMessage"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    }
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="fas fa-exclamation-circle me-2"></i>
+                            @TempData["ErrorMessage"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    }
+                    
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

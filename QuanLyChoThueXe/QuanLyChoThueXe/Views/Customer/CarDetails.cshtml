@@ -1,0 +1,178 @@
+@model QuanLyChoThueXe.Models.Car
+@{
+    ViewData["Title"] = "Chi Tiết Xe - " + Model.Name;
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="mb-1">
+                        <i class="fas fa-car text-primary me-2"></i>
+                        @Model.Name
+                    </h2>
+                    <p class="text-muted mb-0">@Model.Brand @Model.Model - Năm @Model.Year</p>
+                </div>
+                <div>
+                    <a asp-action="SearchCars" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>
+                        Quay Lại
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Car Image -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                    {
+                        <img src="@Model.ImageUrl" class="img-fluid rounded" alt="@Model.Name" style="max-height: 400px; width: 100%; object-fit: contain;" />
+                    }
+                    else
+                    {
+                        <div class="bg-light d-flex align-items-center justify-content-center" style="height: 400px;">
+                            <i class="fas fa-car fa-5x text-muted"></i>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Car Details -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow">
+                <div class="card-header py-3 bg-primary text-white">
+                    <h6 class="m-0 font-weight-bold">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Thông Tin Chi Tiết
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-sm-4">
+                            <strong>Biển Số:</strong>
+                        </div>
+                        <div class="col-sm-8">
+                            <span class="badge bg-info fs-6">@Model.LicensePlate</span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4">
+                            <strong>Loại Xe:</strong>
+                        </div>
+                        <div class="col-sm-8">
+                            @Model.Type
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4">
+                            <strong>Số Chỗ:</strong>
+                        </div>
+                        <div class="col-sm-8">
+                            <i class="fas fa-users me-1"></i>@Model.Seats chỗ
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4">
+                            <strong>Nhiên Liệu:</strong>
+                        </div>
+                        <div class="col-sm-8">
+                            <i class="fas fa-gas-pump me-1"></i>@Model.FuelType
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4">
+                            <strong>Năm SX:</strong>
+                        </div>
+                        <div class="col-sm-8">
+                            <i class="fas fa-calendar me-1"></i>@Model.Year
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4">
+                            <strong>Trạng Thái:</strong>
+                        </div>
+                        <div class="col-sm-8">
+                            @if (Model.Status == CarStatus.Available)
+                            {
+                                <span class="badge bg-success">Có sẵn</span>
+                            }
+                            else if (Model.Status == CarStatus.Rented)
+                            {
+                                <span class="badge bg-warning">Đang thuê</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Không khả dụng</span>
+                            }
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mb-3">
+                        <div class="col-sm-4">
+                            <strong>Giá Thuê:</strong>
+                        </div>
+                        <div class="col-sm-8">
+                            <span class="h4 text-primary">@Model.PricePerDay.ToString("N0") VNĐ</span>
+                            <small class="text-muted">/ngày</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Description -->
+    @if (!string.IsNullOrEmpty(Model.Description))
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header py-3 bg-light">
+                        <h6 class="m-0 font-weight-bold text-primary">
+                            <i class="fas fa-align-left me-2"></i>
+                            Mô Tả
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-0">@Model.Description</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Action Buttons -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    @if (Model.Status == CarStatus.Available)
+                    {
+                        <a asp-action="CreateBooking" asp-route-carId="@Model.Id" class="btn btn-primary btn-lg me-3">
+                            <i class="fas fa-calendar-plus me-2"></i>
+                            Đặt Xe Ngay
+                        </a>
+                    }
+                    else
+                    {
+                        <button class="btn btn-secondary btn-lg me-3" disabled>
+                            <i class="fas fa-times me-2"></i>
+                            Không Khả Dụng
+                        </button>
+                    }
+                    <a asp-action="SearchCars" class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-search me-2"></i>
+                        Tìm Xe Khác
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,117 @@
+@model IEnumerable<QuanLyChoThueXe.Models.SystemConfiguration>
+@{
+    ViewData["Title"] = "Cấu hình hệ thống";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-cogs"></i> Cấu hình hệ thống</h2>
+                <div>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Quay lại
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Cài đặt hệ thống</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="Configuration" method="post">
+                <div class="row">
+                    @foreach (var config in Model)
+                    {
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="card-title">@config.Description</h6>
+                                    <p class="card-text small text-muted">Key: @config.Key</p>
+                                    <div class="mb-3">
+                                        <label for="config_@config.Id" class="form-label">Giá trị</label>
+                                        <input type="hidden" name="[@Model.ToList().IndexOf(config)].Id" value="@config.Id" />
+                                        <input type="hidden" name="[@Model.ToList().IndexOf(config)].Key" value="@config.Key" />
+                                        <input type="hidden" name="[@Model.ToList().IndexOf(config)].Description" value="@config.Description" />
+                                        <input type="text" 
+                                               name="[@Model.ToList().IndexOf(config)].Value" 
+                                               value="@config.Value" 
+                                               class="form-control" 
+                                               id="config_@config.Id" />
+                                    </div>
+                                    <small class="text-muted">
+                                        Cập nhật lần cuối: @config.UpdatedAt.ToString("dd/MM/yyyy HH:mm") bởi @config.UpdatedBy
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Lưu cấu hình
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Additional Configuration Section -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Thông tin hệ thống</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <div class="h4 text-primary">@DateTime.Now.ToString("dd/MM/yyyy")</div>
+                                <div class="text-muted">Ngày hiện tại</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <div class="h4 text-success">@Environment.MachineName</div>
+                                <div class="text-muted">Máy chủ</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <div class="h4 text-info">@Environment.Version</div>
+                                <div class="text-muted">Phiên bản .NET</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Add validation for numeric fields
+        document.querySelectorAll('input[type="text"]').forEach(input => {
+            const key = input.name.match(/\[(\d+)\]\.Value/);
+            if (key) {
+                const configIndex = parseInt(key[1]);
+                const configKey = document.querySelector(`input[name="[${configIndex}].Key"]`).value;
+                
+                if (configKey === 'MaxCancelTime' || configKey === 'DepositRate') {
+                    input.type = 'number';
+                    input.min = '0';
+                    if (configKey === 'DepositRate') {
+                        input.max = '100';
+                    }
+                }
+            }
+        });
+    </script>
+}

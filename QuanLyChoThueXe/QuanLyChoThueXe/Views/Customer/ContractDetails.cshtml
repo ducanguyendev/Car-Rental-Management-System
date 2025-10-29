@@ -1,0 +1,246 @@
+@model QuanLyChoThueXe.Models.RentalContract
+@{
+    ViewData["Title"] = "Chi Tiết Hợp Đồng - " + Model.ContractNumber;
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="mb-1">
+                        <i class="fas fa-file-contract text-primary me-2"></i>
+                        Hợp Đồng @Model.ContractNumber
+                    </h2>
+                    <p class="text-muted mb-0">Chi tiết hợp đồng thuê xe</p>
+                </div>
+                <div>
+                    <a asp-action="Contracts" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>
+                        Quay Lại
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Contract Info -->
+        <div class="col-lg-8 mb-4">
+            <div class="card shadow">
+                <div class="card-header py-3 bg-primary text-white">
+                    <h6 class="m-0 font-weight-bold">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Thông Tin Hợp Đồng
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <strong>Mã hợp đồng:</strong><br>
+                            <span class="badge bg-primary fs-6">@Model.ContractNumber</span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong>Ngày lập:</strong><br>
+                            @Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <strong>Ngày bắt đầu:</strong><br>
+                            @Model.StartDate.ToString("dd/MM/yyyy")
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong>Ngày kết thúc:</strong><br>
+                            @Model.EndDate.ToString("dd/MM/yyyy")
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <strong>Số ngày thuê:</strong><br>
+                            @Model.RentalDays ngày
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong>Trạng thái:</strong><br>
+                            @switch (Model.Status)
+                            {
+                                case ContractStatus.Active:
+                                    <span class="badge bg-success">Đang hoạt động</span>
+                                    break;
+                                case ContractStatus.Completed:
+                                    <span class="badge bg-info">Hoàn thành</span>
+                                    break;
+                                case ContractStatus.Cancelled:
+                                    <span class="badge bg-danger">Đã hủy</span>
+                                    break;
+                                case ContractStatus.Draft:
+                                    <span class="badge bg-secondary">Nháp</span>
+                                    break;
+                                case ContractStatus.Expired:
+                                    <span class="badge bg-warning">Hết hạn</span>
+                                    break;
+                                default:
+                                    <span class="badge bg-secondary">@Model.Status</span>
+                                    break;
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Car Info -->
+            <div class="card shadow mt-4">
+                <div class="card-header py-3 bg-success text-white">
+                    <h6 class="m-0 font-weight-bold">
+                        <i class="fas fa-car me-2"></i>
+                        Thông Tin Xe
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            @if (!string.IsNullOrEmpty(Model.Car.ImageUrl))
+                            {
+                                <img src="@Model.Car.ImageUrl" class="img-fluid rounded" alt="@Model.Car.Name" style="max-height: 150px; width: 100%; object-fit: contain;" />
+                            }
+                            else
+                            {
+                                <div class="bg-light d-flex align-items-center justify-content-center" style="height: 150px;">
+                                    <i class="fas fa-car fa-2x text-muted"></i>
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-8">
+                            <h5>@Model.Car.Name</h5>
+                            <p>
+                                <strong>Biển số:</strong> @Model.Car.LicensePlate<br>
+                                <strong>Loại xe:</strong> @Model.Car.Type<br>
+                                <strong>Số chỗ:</strong> @Model.Car.Seats chỗ<br>
+                                <strong>Nhiên liệu:</strong> @Model.Car.FuelType<br>
+                                <strong>Năm SX:</strong> @Model.Car.Year
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terms -->
+            @if (!string.IsNullOrEmpty(Model.Terms))
+            {
+                <div class="card shadow mt-4">
+                    <div class="card-header py-3 bg-warning text-white">
+                        <h6 class="m-0 font-weight-bold">
+                            <i class="fas fa-file-alt me-2"></i>
+                            Điều Khoản Hợp Đồng
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-0">@Model.Terms</p>
+                    </div>
+                </div>
+            }
+
+            <!-- Notes -->
+            @if (!string.IsNullOrEmpty(Model.Notes))
+            {
+                <div class="card shadow mt-4">
+                    <div class="card-header py-3 bg-info text-white">
+                        <h6 class="m-0 font-weight-bold">
+                            <i class="fas fa-sticky-note me-2"></i>
+                            Ghi Chú
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-0">@Model.Notes</p>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Payment Info -->
+        <div class="col-lg-4 mb-4">
+            <div class="card shadow">
+                <div class="card-header py-3 bg-warning text-white">
+                    <h6 class="m-0 font-weight-bold">
+                        <i class="fas fa-money-bill-wave me-2"></i>
+                        Thông Tin Thanh Toán
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <strong>Giá thuê/ngày:</strong><br>
+                        <span class="h5 text-primary">@Model.PricePerDay.ToString("N0") VNĐ</span>
+                    </div>
+                    <div class="mb-3">
+                        <strong>Số ngày thuê:</strong><br>
+                        @Model.RentalDays ngày
+                    </div>
+                    <hr>
+                    <div class="mb-3">
+                        <strong>Tổng tiền:</strong><br>
+                        <span class="h4 text-primary">@Model.TotalPrice.ToString("N0") VNĐ</span>
+                    </div>
+                    <div class="mb-3">
+                        <strong>Tiền cọc:</strong><br>
+                        <span class="h5 text-warning">@Model.Deposit.ToString("N0") VNĐ</span>
+                    </div>
+                    <hr>
+                    <div class="mb-3">
+                        <strong>Còn lại:</strong><br>
+                        <span class="h5 text-success">@((Model.TotalPrice - Model.Deposit).ToString("N0")) VNĐ</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Info -->
+            <div class="card shadow mt-4">
+                <div class="card-header py-3 bg-info text-white">
+                    <h6 class="m-0 font-weight-bold">
+                        <i class="fas fa-user me-2"></i>
+                        Thông Tin Khách Hàng
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <p><strong>Họ tên:</strong><br>@Model.Customer.FullName</p>
+                    <p><strong>Số điện thoại:</strong><br>@Model.Customer.PhoneNumber</p>
+                    <p><strong>Email:</strong><br>@Model.Customer.Email</p>
+                    <p><strong>CMND/CCCD:</strong><br>@Model.Customer.IdentityNumber</p>
+                    <p><strong>Địa chỉ:</strong><br>@Model.Customer.Address</p>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="card shadow mt-4">
+                <div class="card-header py-3 bg-light">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        <i class="fas fa-cogs me-2"></i>
+                        Thao Tác
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a asp-action="Contracts" class="btn btn-secondary">
+                            <i class="fas fa-list me-2"></i>
+                            Danh Sách Hợp Đồng
+                        </a>
+                        @if (Model.Status == ContractStatus.Active)
+                        {
+                            <button class="btn btn-warning" disabled>
+                                <i class="fas fa-clock me-2"></i>
+                                Đang Thuê
+                            </button>
+                        }
+                        else if (Model.Status == ContractStatus.Completed)
+                        {
+                            <button class="btn btn-success" disabled>
+                                <i class="fas fa-check me-2"></i>
+                                Hoàn Thành
+                            </button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

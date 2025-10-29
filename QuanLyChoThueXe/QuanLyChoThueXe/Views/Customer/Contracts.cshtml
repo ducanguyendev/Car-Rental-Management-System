@@ -1,0 +1,124 @@
+@model List<QuanLyChoThueXe.Models.RentalContract>
+@{
+    ViewData["Title"] = "Quản Lý Hợp Đồng";
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="mb-1">
+                        <i class="fas fa-file-contract text-primary me-2"></i>
+                        Quản Lý Hợp Đồng
+                    </h2>
+                    <p class="text-muted mb-0">Danh sách các hợp đồng thuê xe của bạn</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contracts List -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header py-3 bg-primary text-white">
+                    <h6 class="m-0 font-weight-bold">
+                        <i class="fas fa-list me-2"></i>
+                        Danh Sách Hợp Đồng (@Model.Count hợp đồng)
+                    </h6>
+                </div>
+                <div class="card-body">
+                    @if (Model.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Mã Hợp Đồng</th>
+                                        <th>Xe</th>
+                                        <th>Ngày Bắt Đầu</th>
+                                        <th>Ngày Kết Thúc</th>
+                                        <th>Số Ngày</th>
+                                        <th>Tổng Tiền</th>
+                                        <th>Tiền Cọc</th>
+                                        <th>Trạng Thái</th>
+                                        <th>Thao Tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var contract in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <strong>@contract.ContractNumber</strong>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <strong>@contract.Car.Name</strong><br>
+                                                    <small class="text-muted">@contract.Car.LicensePlate</small>
+                                                </div>
+                                            </td>
+                                            <td>@contract.StartDate.ToString("dd/MM/yyyy")</td>
+                                            <td>@contract.EndDate.ToString("dd/MM/yyyy")</td>
+                                            <td>@contract.RentalDays ngày</td>
+                                            <td>
+                                                <strong class="text-primary">@contract.TotalPrice.ToString("N0") VNĐ</strong>
+                                            </td>
+                                            <td>
+                                                <strong class="text-warning">@contract.Deposit.ToString("N0") VNĐ</strong>
+                                            </td>
+                                            <td>
+                                                @switch (contract.Status)
+                                                {
+                                                    case ContractStatus.Active:
+                                                        <span class="badge bg-success">Đang hoạt động</span>
+                                                        break;
+                                                    case ContractStatus.Completed:
+                                                        <span class="badge bg-info">Hoàn thành</span>
+                                                        break;
+                                                    case ContractStatus.Cancelled:
+                                                        <span class="badge bg-danger">Đã hủy</span>
+                                                        break;
+                                                    case ContractStatus.Draft:
+                                                        <span class="badge bg-secondary">Nháp</span>
+                                                        break;
+                                                    case ContractStatus.Expired:
+                                                        <span class="badge bg-warning">Hết hạn</span>
+                                                        break;
+                                                    default:
+                                                        <span class="badge bg-secondary">@contract.Status</span>
+                                                        break;
+                                                }
+                                            </td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a asp-action="ContractDetails" asp-route-id="@contract.Id" class="btn btn-sm btn-outline-primary">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <i class="fas fa-file-contract fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">Chưa có hợp đồng nào</h5>
+                            <p class="text-muted">Hãy đặt xe để tạo hợp đồng thuê xe!</p>
+                            <a asp-action="SearchCars" class="btn btn-primary">
+                                <i class="fas fa-search me-2"></i>
+                                Tìm Kiếm Xe
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

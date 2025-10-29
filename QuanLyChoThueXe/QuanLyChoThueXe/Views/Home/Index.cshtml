@@ -1,0 +1,237 @@
+﻿@{
+    ViewData["Title"] = "Trang Chủ";
+}
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h2 class="text-primary mb-0">
+            <i class="fas fa-tachometer-alt me-2"></i>
+            Dashboard Tổng Quan
+        </h2>
+        <p class="text-muted">Thống kê và quản lý hệ thống cho thuê xe</p>
+    </div>
+</div>
+
+<!-- Thống kê tổng quan -->
+<div class="row mb-4">
+    <div class="col-md-3 mb-3">
+        <div class="card stat-card">
+            <div class="card-body text-center">
+                <i class="fas fa-car fa-2x mb-2"></i>
+                <div class="stat-number">@ViewBag.TotalCars</div>
+                <div>Tổng số xe</div>
+                <small>Có sẵn: @ViewBag.AvailableCars | Đang thuê: @ViewBag.RentedCars</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card stat-card">
+            <div class="card-body text-center">
+                <i class="fas fa-users fa-2x mb-2"></i>
+                <div class="stat-number">@ViewBag.TotalCustomers</div>
+                <div>Tổng khách hàng</div>
+                <small>Hoạt động: @ViewBag.ActiveCustomers</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card stat-card">
+            <div class="card-body text-center">
+                <i class="fas fa-calendar-check fa-2x mb-2"></i>
+                <div class="stat-number">@ViewBag.TotalBookings</div>
+                <div>Đặt xe trước</div>
+                <small>Chờ xử lý: @ViewBag.PendingBookings</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card stat-card">
+            <div class="card-body text-center">
+                <i class="fas fa-file-contract fa-2x mb-2"></i>
+                <div class="stat-number">@ViewBag.TotalContracts</div>
+                <div>Hợp đồng thuê</div>
+                <small>Đang hoạt động: @ViewBag.ActiveContracts</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Xe gần đây -->
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-car me-2"></i>
+                    Xe Mới Thêm
+                </h5>
+            </div>
+            <div class="card-body">
+                @if (ViewBag.RecentCars != null && ((List<QuanLyChoThueXe.Models.Car>)ViewBag.RecentCars).Any())
+                {
+                    @foreach (var car in (List<QuanLyChoThueXe.Models.Car>)ViewBag.RecentCars)
+                    {
+                        <div class="d-flex justify-content-between align-items-center mb-2 p-2 border rounded">
+                            <div>
+                                <strong>@car.Name</strong><br>
+                                <small class="text-muted">@car.LicensePlate</small>
+                            </div>
+                            <span class="badge bg-@(car.Status == QuanLyChoThueXe.Models.CarStatus.Available ? "success" : "warning")">
+                                @(car.Status == QuanLyChoThueXe.Models.CarStatus.Available ? "Có sẵn" : "Đang thuê")
+                            </span>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted text-center">Chưa có xe nào</p>
+                }
+                <div class="text-center mt-3">
+                    <a asp-controller="Car" asp-action="Index" class="btn btn-primary btn-sm">
+                        <i class="fas fa-eye me-1"></i> Xem Tất Cả
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Đặt xe gần đây -->
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-calendar-check me-2"></i>
+                    Đặt Xe Gần Đây
+                </h5>
+            </div>
+            <div class="card-body">
+                @if (ViewBag.RecentBookings != null && ((List<QuanLyChoThueXe.Models.Booking>)ViewBag.RecentBookings).Any())
+                {
+                    @foreach (var booking in (List<QuanLyChoThueXe.Models.Booking>)ViewBag.RecentBookings)
+                    {
+                        <div class="d-flex justify-content-between align-items-center mb-2 p-2 border rounded">
+                            <div>
+                                <strong>@booking.Customer.FullName</strong><br>
+                                <small class="text-muted">@booking.Car.Name</small>
+                            </div>
+                            <span class="badge bg-@(booking.Status == QuanLyChoThueXe.Models.BookingStatus.Pending ? "warning" : "success")">
+                                @(booking.Status == QuanLyChoThueXe.Models.BookingStatus.Pending ? "Chờ xử lý" : "Đã xác nhận")
+                            </span>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted text-center">Chưa có đặt xe nào</p>
+                }
+                <div class="text-center mt-3">
+                    <a asp-controller="Booking" asp-action="Index" class="btn btn-success btn-sm">
+                        <i class="fas fa-eye me-1"></i> Xem Tất Cả
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hợp đồng gần đây -->
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-file-contract me-2"></i>
+                    Hợp Đồng Gần Đây
+                </h5>
+            </div>
+            <div class="card-body">
+                @if (ViewBag.RecentContracts != null && ((List<QuanLyChoThueXe.Models.RentalContract>)ViewBag.RecentContracts).Any())
+                {
+                    @foreach (var contract in (List<QuanLyChoThueXe.Models.RentalContract>)ViewBag.RecentContracts)
+                    {
+                        <div class="d-flex justify-content-between align-items-center mb-2 p-2 border rounded">
+                            <div>
+                                <strong>@contract.ContractNumber</strong><br>
+                                <small class="text-muted">@contract.Customer.FullName</small>
+                            </div>
+                            <span class="badge bg-@(contract.Status == QuanLyChoThueXe.Models.ContractStatus.Active ? "success" : "secondary")">
+                                @(contract.Status == QuanLyChoThueXe.Models.ContractStatus.Active ? "Hoạt động" : "Nháp")
+                            </span>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted text-center">Chưa có hợp đồng nào</p>
+                }
+                <div class="text-center mt-3">
+                    <a asp-controller="RentalContract" asp-action="Index" class="btn btn-info btn-sm">
+                        <i class="fas fa-eye me-1"></i> Xem Tất Cả
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Thông báo -->
+@if (ViewBag.UnreadNotifications > 0)
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-warning">
+                <i class="fas fa-bell me-2"></i>
+                Bạn có <strong>@ViewBag.UnreadNotifications</strong> thông báo chưa đọc.
+                <a asp-controller="Notification" asp-action="Index" class="alert-link">Xem ngay</a>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Quick Actions -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-bolt me-2"></i>
+                    Thao Tác Nhanh
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 mb-2">
+                        <a asp-controller="Car" asp-action="Create" class="btn btn-primary w-100">
+                            <i class="fas fa-plus me-2"></i>Thêm Xe Mới
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <a asp-controller="Customer" asp-action="Create" class="btn btn-success w-100">
+                            <i class="fas fa-user-plus me-2"></i>Thêm Khách Hàng
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <a asp-controller="Booking" asp-action="Create" class="btn btn-warning w-100">
+                            <i class="fas fa-calendar-plus me-2"></i>Đặt Xe Trước
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <a asp-controller="RentalContract" asp-action="Create" class="btn btn-info w-100">
+                            <i class="fas fa-file-signature me-2"></i>Tạo Hợp Đồng
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Auto refresh dashboard stats every 30 seconds
+        setInterval(function() {
+            $.get('@Url.Action("GetDashboardStats", "Home")', function(data) {
+                // Update stats if needed
+                console.log('Dashboard stats updated:', data);
+            });
+        }, 30000);
+    </script>
+}

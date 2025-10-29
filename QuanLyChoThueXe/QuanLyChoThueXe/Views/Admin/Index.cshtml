@@ -1,0 +1,200 @@
+@model QuanLyChoThueXe.Controllers.AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Trang quản trị";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-tachometer-alt"></i> Trang quản trị hệ thống</h2>
+                <div>
+                    <span class="text-muted">Xin chào, @User.Identity?.Name</span>
+                    <form asp-action="Logout" asp-controller="Auth" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-outline-danger btn-sm ms-2">
+                            <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tổng người dùng</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalUsers</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-users fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Khách hàng</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalCustomers</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-user fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Nhân viên</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalEmployees</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-user-tie fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Xe có sẵn</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.AvailableCars</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-car fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Management Cards -->
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Quản lý người dùng</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <a asp-action="Users" class="btn btn-primary btn-block">
+                                <i class="fas fa-users"></i> Quản lý người dùng
+                            </a>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <a asp-action="CreateUser" class="btn btn-success btn-block">
+                                <i class="fas fa-user-plus"></i> Tạo tài khoản nhân viên
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <a asp-action="Configuration" class="btn btn-info btn-block">
+                                <i class="fas fa-cogs"></i> Cấu hình hệ thống
+                            </a>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <a asp-action="Logs" class="btn btn-warning btn-block">
+                                <i class="fas fa-list"></i> Nhật ký hệ thống
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Thống kê hệ thống</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="text-center">
+                                <div class="h4 text-primary">@Model.TotalCars</div>
+                                <div class="text-muted">Tổng số xe</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="text-center">
+                                <div class="h4 text-success">@Model.TotalBookings</div>
+                                <div class="text-muted">Tổng số đặt xe</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="text-center">
+                                <div class="h4 text-info">@Model.TotalContracts</div>
+                                <div class="text-muted">Tổng số hợp đồng</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="text-center">
+                                <div class="h4 text-warning">@Model.ActiveUsers</div>
+                                <div class="text-muted">Người dùng hoạt động</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Thao tác nhanh</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <a asp-action="Index" asp-controller="Car" class="btn btn-outline-primary btn-block">
+                                <i class="fas fa-car"></i> Quản lý xe
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <a asp-action="Index" asp-controller="Customer" class="btn btn-outline-success btn-block">
+                                <i class="fas fa-user"></i> Quản lý khách hàng
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <a asp-action="Index" asp-controller="Booking" class="btn btn-outline-info btn-block">
+                                <i class="fas fa-calendar-check"></i> Quản lý đặt xe
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <a asp-action="Index" asp-controller="RentalContract" class="btn btn-outline-warning btn-block">
+                                <i class="fas fa-file-contract"></i> Quản lý hợp đồng
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

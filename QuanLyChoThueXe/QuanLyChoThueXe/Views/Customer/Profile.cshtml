@@ -1,0 +1,178 @@
+@model QuanLyChoThueXe.Models.CustomerProfileViewModel
+@{
+    ViewData["Title"] = "Hồ Sơ Cá Nhân";
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="mb-1">
+                        <i class="fas fa-user text-primary me-2"></i>
+                        Hồ Sơ Cá Nhân
+                    </h2>
+                    <p class="text-muted mb-0">Quản lý thông tin cá nhân của bạn</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="row">
+        <!-- Profile Form -->
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-header py-3 bg-primary text-white">
+                    <h6 class="m-0 font-weight-bold">
+                        <i class="fas fa-edit me-2"></i>
+                        Thông Tin Cá Nhân
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <form asp-action="UpdateProfile" method="post">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Customer.FullName" class="form-label">Họ và Tên *</label>
+                                <input asp-for="Customer.FullName" class="form-control" required />
+                                <span asp-validation-for="Customer.FullName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Customer.PhoneNumber" class="form-label">Số Điện Thoại *</label>
+                                <input asp-for="Customer.PhoneNumber" class="form-control" required />
+                                <span asp-validation-for="Customer.PhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Customer.Email" class="form-label">Email</label>
+                                <input asp-for="Customer.Email" type="email" class="form-control" />
+                                <span asp-validation-for="Customer.Email" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Customer.IdentityNumber" class="form-label">Số CMND/CCCD *</label>
+                                <input asp-for="Customer.IdentityNumber" class="form-control" required />
+                                <span asp-validation-for="Customer.IdentityNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Customer.DateOfBirth" class="form-label">Ngày Sinh</label>
+                                <input asp-for="Customer.DateOfBirth" type="date" class="form-control" />
+                                <span asp-validation-for="Customer.DateOfBirth" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Customer.Gender" class="form-label">Giới Tính</label>
+                                <select asp-for="Customer.Gender" class="form-control">
+                                    <option value="">Chọn giới tính</option>
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                    <option value="Khác">Khác</option>
+                                </select>
+                                <span asp-validation-for="Customer.Gender" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Customer.Occupation" class="form-label">Nghề Nghiệp</label>
+                                <input asp-for="Customer.Occupation" class="form-control" />
+                                <span asp-validation-for="Customer.Occupation" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Customer.Workplace" class="form-label">Nơi Làm Việc</label>
+                                <input asp-for="Customer.Workplace" class="form-control" />
+                                <span asp-validation-for="Customer.Workplace" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Customer.Address" class="form-label">Địa Chỉ *</label>
+                            <textarea asp-for="Customer.Address" class="form-control" rows="3" required></textarea>
+                            <span asp-validation-for="Customer.Address" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>
+                                Quay Lại
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>
+                                Cập Nhật Thông Tin
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Account Info -->
+        <div class="col-lg-4">
+            <div class="card shadow">
+                <div class="card-header py-3 bg-info text-white">
+                    <h6 class="m-0 font-weight-bold">
+                        <i class="fas fa-user-circle me-2"></i>
+                        Thông Tin Tài Khoản
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Tên Đăng Nhập</label>
+                        <p class="text-muted">@Model.Username</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Email</label>
+                        <p class="text-muted">@Model.Email</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Trạng Thái</label>
+                        <span class="badge bg-success">Hoạt Động</span>
+                    </div>
+                    <hr>
+                    <div class="d-grid">
+                        <a asp-action="ChangePassword" class="btn btn-warning">
+                            <i class="fas fa-key me-2"></i>
+                            Đổi Mật Khẩu
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="card shadow mt-4">
+                <div class="card-header py-3 bg-success text-white">
+                    <h6 class="m-0 font-weight-bold">
+                        <i class="fas fa-chart-bar me-2"></i>
+                        Thống Kê
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <div class="border-end">
+                                <h4 class="text-primary mb-0">0</h4>
+                                <small class="text-muted">Đặt Xe</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <h4 class="text-success mb-0">0</h4>
+                            <small class="text-muted">Hợp Đồng</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

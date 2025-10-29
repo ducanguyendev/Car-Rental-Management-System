@@ -1,0 +1,184 @@
+@model QuanLyChoThueXe.Models.Car
+
+@{
+    ViewData["Title"] = "Chi Tiết Xe";
+}
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h2 class="text-primary mb-0">
+            <i class="fas fa-car me-2"></i>
+            Chi Tiết Xe
+        </h2>
+        <p class="text-muted">Thông tin chi tiết về xe</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Thông tin cơ bản</h5>
+                        <table class="table table-borderless">
+                            <tr>
+                                <td><strong>Tên xe:</strong></td>
+                                <td>@Model.Name</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Biển số:</strong></td>
+                                <td>@Model.LicensePlate</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hãng:</strong></td>
+                                <td>@Model.Brand</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Model:</strong></td>
+                                <td>@Model.Model</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Năm sản xuất:</strong></td>
+                                <td>@Model.Year</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Thông tin kỹ thuật</h5>
+                        <table class="table table-borderless">
+                            <tr>
+                                <td><strong>Loại xe:</strong></td>
+                                <td>@Model.Type</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Số chỗ ngồi:</strong></td>
+                                <td>@Model.Seats</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Loại nhiên liệu:</strong></td>
+                                <td>@Model.FuelType</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Giá thuê/ngày:</strong></td>
+                                <td>@Model.PricePerDay.ToString("N0") VNĐ</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Trạng thái:</strong></td>
+                                <td>
+                                    <span class="badge bg-@(Model.Status switch {
+                                        CarStatus.Available => "success",
+                                        CarStatus.Rented => "danger",
+                                        CarStatus.Reserved => "warning",
+                                        CarStatus.Maintenance => "info",
+                                        CarStatus.OutOfService => "secondary",
+                                        _ => "secondary"
+                                    })">
+                                        @(Model.Status switch {
+                                            CarStatus.Available => "Có sẵn",
+                                            CarStatus.Rented => "Đang thuê",
+                                            CarStatus.Reserved => "Đã đặt trước",
+                                            CarStatus.Maintenance => "Bảo trì",
+                                            CarStatus.OutOfService => "Ngừng hoạt động",
+                                            _ => "Không xác định"
+                                        })
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+                    <div class="mt-4">
+                        <h5>Mô tả</h5>
+                        <p>@Model.Description</p>
+                    </div>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <div class="mt-4">
+                        <h5>Hình ảnh</h5>
+                        <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid rounded" style="max-height: 300px;">
+                    </div>
+                }
+
+                <div class="mt-4">
+                    <h5>Thông tin hệ thống</h5>
+                    <table class="table table-borderless">
+                        <tr>
+                            <td><strong>Ngày tạo:</strong></td>
+                            <td>@Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                        </tr>
+                        @if (Model.UpdatedAt.HasValue)
+                        {
+                            <tr>
+                                <td><strong>Ngày cập nhật:</strong></td>
+                                <td>@Model.UpdatedAt.Value.ToString("dd/MM/yyyy HH:mm")</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-cogs me-2"></i>
+                    Thao tác
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                        <i class="fas fa-edit me-2"></i>Sửa thông tin
+                    </a>
+                    <a asp-action="Status" asp-route-id="@Model.Id" class="btn btn-info">
+                        <i class="fas fa-info-circle me-2"></i>Xem trạng thái
+                    </a>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Quay lại danh sách
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-chart-bar me-2"></i>
+                    Thống kê
+                </h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Số lần thuê:</strong> <span id="rentalCount">-</span></p>
+                <p><strong>Số đặt trước:</strong> <span id="bookingCount">-</span></p>
+                <p><strong>Tổng doanh thu:</strong> <span id="totalRevenue">-</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Load car statistics
+        $(document).ready(function() {
+            $.get('@Url.Action("GetCarStats", "Car")', { id: @Model.Id }, function(data) {
+                if (data.success) {
+                    $('#rentalCount').text(data.rentalCount);
+                    $('#bookingCount').text(data.bookingCount);
+                    $('#totalRevenue').text(data.totalRevenue.toLocaleString() + ' VNĐ');
+                }
+            });
+        });
+    </script>
+}
+
+
+
+

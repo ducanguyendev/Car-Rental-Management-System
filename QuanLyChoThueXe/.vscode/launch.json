@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch QuanLyChoThueXe",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/QuanLyChoThueXe/bin/Debug/net8.0/QuanLyChoThueXe.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/QuanLyChoThueXe",
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+                "uriFormat": "%s"
+            }
+        }
+    ]
+}

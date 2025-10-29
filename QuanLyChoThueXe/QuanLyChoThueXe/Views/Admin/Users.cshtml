@@ -1,0 +1,222 @@
+@model IEnumerable<QuanLyChoThueXe.Models.User>
+@{
+    ViewData["Title"] = "Quản lý người dùng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-users"></i> Quản lý người dùng</h2>
+                <div>
+                    <a asp-action="CreateUser" class="btn btn-success">
+                        <i class="fas fa-user-plus"></i> Tạo tài khoản nhân viên
+                    </a>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Quay lại
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách người dùng</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Vai trò</th>
+                            <th>Trạng thái</th>
+                            <th>Thông tin liên kết</th>
+                            <th>Ngày tạo</th>
+                            <th>Đăng nhập cuối</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td>@user.Id</td>
+                                <td>@user.Username</td>
+                                <td>@user.Email</td>
+                                <td>
+                                    @switch (user.Role)
+                                    {
+                                        case QuanLyChoThueXe.Models.UserRole.Admin:
+                                            <span class="badge bg-danger">Admin</span>
+                                            break;
+                                        case QuanLyChoThueXe.Models.UserRole.Employee:
+                                            <span class="badge bg-warning">Nhân viên</span>
+                                            break;
+                                        case QuanLyChoThueXe.Models.UserRole.Customer:
+                                            <span class="badge bg-info">Khách hàng</span>
+                                            break;
+                                    }
+                                </td>
+                                <td>
+                                    @if (user.IsActive)
+                                    {
+                                        <span class="badge bg-success">Hoạt động</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">Không hoạt động</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (user.Customer != null)
+                                    {
+                                        <span class="text-info">@user.Customer.FullName</span>
+                                    }
+                                    else if (user.Employee != null)
+                                    {
+                                        <span class="text-warning">@user.Employee.FullName</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Không có</span>
+                                    }
+                                </td>
+                                <td>@user.CreatedAt.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    @if (user.LastLoginAt.HasValue)
+                                    {
+                                        @user.LastLoginAt.Value.ToString("dd/MM/yyyy HH:mm")
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Chưa đăng nhập</span>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a asp-action="EditUser" asp-route-id="@user.Id" class="btn btn-sm btn-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-sm btn-warning" onclick="resetPassword(@user.Id)">
+                                            <i class="fas fa-key"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm @(user.IsActive ? "btn-secondary" : "btn-success")" 
+                                                onclick="toggleStatus(@user.Id, @user.IsActive.ToString().ToLower())">
+                                            <i class="fas fa-@(user.IsActive ? "ban" : "check")"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Reset Password Modal -->
+<div class="modal fade" id="resetPasswordModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Đặt lại mật khẩu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="resetPasswordForm">
+                    <input type="hidden" id="userId" />
+                    <div class="mb-3">
+                        <label for="newPassword" class="form-label">Mật khẩu mới</label>
+                        <input type="password" class="form-control" id="newPassword" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Xác nhận mật khẩu</label>
+                        <input type="password" class="form-control" id="confirmPassword" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary" onclick="confirmResetPassword()">Đặt lại</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function resetPassword(userId) {
+            document.getElementById('userId').value = userId;
+            $('#resetPasswordModal').modal('show');
+        }
+
+        function confirmResetPassword() {
+            const userId = document.getElementById('userId').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (newPassword !== confirmPassword) {
+                alert('Mật khẩu xác nhận không khớp!');
+                return;
+            }
+
+            if (newPassword.length < 6) {
+                alert('Mật khẩu phải có ít nhất 6 ký tự!');
+                return;
+            }
+
+            fetch(`/Admin/Users/${userId}/ResetPassword`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ newPassword: newPassword })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    $('#resetPasswordModal').modal('hide');
+                    document.getElementById('resetPasswordForm').reset();
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Có lỗi xảy ra!');
+            });
+        }
+
+        function toggleStatus(userId, isActive) {
+            const action = isActive ? 'vô hiệu hóa' : 'kích hoạt';
+            if (confirm(`Bạn có chắc chắn muốn ${action} tài khoản này?`)) {
+                fetch(`/Admin/Users/${userId}/ToggleStatus`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message);
+                        location.reload();
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Có lỗi xảy ra!');
+                });
+            }
+        }
+    </script>
+}

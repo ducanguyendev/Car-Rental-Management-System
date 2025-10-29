@@ -1,0 +1,169 @@
+@model QuanLyChoThueXe.Models.RentalContract
+@{
+    ViewData["Title"] = "Chi Tiết Hợp Đồng";
+}
+
+<div class="container-fluid py-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0"><i class="fas fa-file-contract me-2"></i>Hợp Đồng: @Model.ContractNumber</h4>
+            <div>
+                <a href="@Url.Action("Print", "RentalContract", new { id = Model.Id })" class="btn btn-primary" target="_blank">
+                    <i class="fas fa-print me-2"></i>In hợp đồng
+                </a>
+                <a href="@Url.Action("Index")" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Quay lại
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="text-primary mb-3">Thông tin khách hàng</h5>
+                    <table class="table table-borderless">
+                        <tr>
+                            <th width="150">Họ tên:</th>
+                            <td>@Model.Customer.FullName</td>
+                        </tr>
+                        <tr>
+                            <th>Email:</th>
+                            <td>@Model.Customer.Email</td>
+                        </tr>
+                        <tr>
+                            <th>Điện thoại:</th>
+                            <td>@Model.Customer.PhoneNumber</td>
+                        </tr>
+                        <tr>
+                            <th>Địa chỉ:</th>
+                            <td>@Model.Customer.Address</td>
+                        </tr>
+                        <tr>
+                            <th>CMND/CCCD:</th>
+                            <td>@Model.Customer.IdentityNumber</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="text-primary mb-3">Thông tin xe</h5>
+                    <table class="table table-borderless">
+                        <tr>
+                            <th width="150">Tên xe:</th>
+                            <td>@Model.Car.Name</td>
+                        </tr>
+                        <tr>
+                            <th>Biển số:</th>
+                            <td>@Model.Car.LicensePlate</td>
+                        </tr>
+                        <tr>
+                            <th>Hãng:</th>
+                            <td>@Model.Car.Brand</td>
+                        </tr>
+                        <tr>
+                            <th>Model:</th>
+                            <td>@Model.Car.Model</td>
+                        </tr>
+                        <tr>
+                            <th>Loại:</th>
+                            <td>@Model.Car.Type (@Model.Car.Seats chỗ)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="text-primary mb-3">Thông tin hợp đồng</h5>
+                    <table class="table table-borderless">
+                        <tr>
+                            <th width="180">Số hợp đồng:</th>
+                            <td><strong>@Model.ContractNumber</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Ngày bắt đầu:</th>
+                            <td>@Model.StartDate.ToString("dd/MM/yyyy")</td>
+                        </tr>
+                        <tr>
+                            <th>Ngày kết thúc:</th>
+                            <td>@Model.EndDate.ToString("dd/MM/yyyy")</td>
+                        </tr>
+                        <tr>
+                            <th>Số ngày:</th>
+                            <td>@Model.RentalDays ngày</td>
+                        </tr>
+                        <tr>
+                            <th>Giá mỗi ngày:</th>
+                            <td>@Model.PricePerDay.ToString("N0") VNĐ</td>
+                        </tr>
+                        <tr>
+                            <th>Tổng tiền:</th>
+                            <td><strong class="text-primary">@Model.TotalPrice.ToString("N0") VNĐ</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Tiền cọc:</th>
+                            <td><strong class="text-warning">@Model.Deposit.ToString("N0") VNĐ</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Trạng thái:</th>
+                            <td>
+                                @switch (Model.Status)
+                                {
+                                    case QuanLyChoThueXe.Models.ContractStatus.Draft:
+                                        <span class="badge bg-secondary">Nháp</span>
+                                        break;
+                                    case QuanLyChoThueXe.Models.ContractStatus.Active:
+                                        <span class="badge bg-success">Hoạt động</span>
+                                        break;
+                                    case QuanLyChoThueXe.Models.ContractStatus.Completed:
+                                        <span class="badge bg-info">Hoàn thành</span>
+                                        break;
+                                    case QuanLyChoThueXe.Models.ContractStatus.Cancelled:
+                                        <span class="badge bg-danger">Đã hủy</span>
+                                        break;
+                                    case QuanLyChoThueXe.Models.ContractStatus.Expired:
+                                        <span class="badge bg-warning">Hết hạn</span>
+                                        break;
+                                }
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    @if (!string.IsNullOrEmpty(Model.Terms))
+                    {
+                        <h5 class="text-primary mb-3">Điều khoản</h5>
+                        <div class="alert alert-light">@Model.Terms</div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Notes))
+                    {
+                        <h5 class="text-primary mb-3">Ghi chú</h5>
+                        <div class="alert alert-light">@Model.Notes</div>
+                    }
+                </div>
+            </div>
+
+            <div class="mt-4">
+                @if (Model.Status == QuanLyChoThueXe.Models.ContractStatus.Active)
+                {
+                    <form asp-action="Complete" method="post" class="d-inline" onsubmit="return confirm('Xác nhận hoàn thành hợp đồng này?');">
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-check me-2"></i>Hoàn thành hợp đồng
+                        </button>
+                    </form>
+                    <form asp-action="Cancel" method="post" class="d-inline" onsubmit="return confirm('Xác nhận hủy hợp đồng này?');">
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-times me-2"></i>Hủy hợp đồng
+                        </button>
+                    </form>
+                }
+                <a href="@Url.Action("Index")" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Quay lại
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+

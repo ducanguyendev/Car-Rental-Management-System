@@ -1,0 +1,166 @@
+@model IEnumerable<QuanLyChoThueXe.Models.Car>
+
+@{
+    ViewData["Title"] = "Quản Lý Xe";
+}
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <h2 class="text-primary mb-0">
+            <i class="fas fa-car me-2"></i>
+            Quản Lý Xe
+        </h2>
+        <p class="text-muted">Quản lý thông tin và trạng thái xe</p>
+    </div>
+    <div class="col-md-6 text-end">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Thêm Xe Mới
+        </a>
+    </div>
+</div>
+
+<!-- Bộ lọc -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="get" class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">Tìm kiếm</label>
+                <input type="text" name="searchString" class="form-control" placeholder="Tên xe, hãng, biển số..." value="@ViewBag.SearchString">
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Trạng thái</label>
+                <select name="statusFilter" class="form-select">
+                    <option value="">Tất cả</option>
+                    @foreach (var status in (CarStatus[])ViewBag.CarStatuses)
+                    {
+                        var isSelected = ViewBag.StatusFilter?.ToString() == status.ToString();
+                        var statusText = status switch
+                        {
+                            CarStatus.Available => "Có sẵn",
+                            CarStatus.Rented => "Đang thuê",
+                            CarStatus.Reserved => "Đã đặt trước",
+                            CarStatus.Maintenance => "Bảo trì",
+                            CarStatus.OutOfService => "Ngừng hoạt động",
+                            _ => "Không xác định"
+                        };
+                        <option value="@status" selected="@isSelected">@statusText</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">&nbsp;</label>
+                <button type="submit" class="btn btn-outline-primary d-block w-100">
+                    <i class="fas fa-search me-1"></i>Tìm kiếm
+                </button>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">&nbsp;</label>
+                <a asp-action="Index" class="btn btn-outline-secondary d-block w-100">
+                    <i class="fas fa-refresh me-1"></i>Làm mới
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Danh sách xe -->
+<div class="card">
+    <div class="card-body">
+        @if (Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Tên xe</th>
+                            <th>Biển số</th>
+                            <th>Hãng/Model</th>
+                            <th>Loại</th>
+                            <th>Giá/ngày</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <strong>@item.Name</strong>
+                                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                    {
+                                        <br><small class="text-muted">Có hình ảnh</small>
+                                    }
+                                </td>
+                                <td>@item.LicensePlate</td>
+                                <td>@item.Brand @item.Model (@item.Year)</td>
+                                <td>@item.Type</td>
+                                <td>@item.PricePerDay.ToString("N0") VNĐ</td>
+                                <td>
+                                    <span class="badge bg-@(item.Status switch {
+                                        CarStatus.Available => "success",
+                                        CarStatus.Rented => "danger",
+                                        CarStatus.Reserved => "warning",
+                                        CarStatus.Maintenance => "info",
+                                        CarStatus.OutOfService => "secondary",
+                                        _ => "secondary"
+                                    })">
+                                        @(item.Status switch {
+                                            CarStatus.Available => "Có sẵn",
+                                            CarStatus.Rented => "Đang thuê",
+                                            CarStatus.Reserved => "Đã đặt trước",
+                                            CarStatus.Maintenance => "Bảo trì",
+                                            CarStatus.OutOfService => "Ngừng hoạt động",
+                                            _ => "Không xác định"
+                                        })
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info btn-sm">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-action="Status" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">
+                                            <i class="fas fa-info-circle"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="text-center py-5">
+                <i class="fas fa-car fa-3x text-muted mb-3"></i>
+                <h5 class="text-muted">Chưa có xe nào</h5>
+                <p class="text-muted">Hãy thêm xe đầu tiên để bắt đầu quản lý</p>
+                <a asp-action="Create" class="btn btn-primary">
+                    <i class="fas fa-plus me-2"></i>Thêm Xe Mới
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Auto refresh car status
+        function refreshCarStatus(carId) {
+            $.get('@Url.Action("GetCarStatus", "Car")', { id: carId }, function(data) {
+                if (data.success) {
+                    // Update status badge if needed
+                    console.log('Car status updated:', data);
+                }
+            });
+        }
+    </script>
+}

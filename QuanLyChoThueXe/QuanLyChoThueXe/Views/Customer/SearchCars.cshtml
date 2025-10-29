@@ -1,0 +1,170 @@
+@model QuanLyChoThueXe.Models.CarSearchViewModel
+@{
+    ViewData["Title"] = "Tìm Kiếm Xe";
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="mb-1">
+                        <i class="fas fa-search text-primary me-2"></i>
+                        Tìm Kiếm Xe
+                    </h2>
+                    <p class="text-muted mb-0">Tìm kiếm xe phù hợp với nhu cầu của bạn</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Form -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header py-3 bg-primary text-white">
+                    <h6 class="m-0 font-weight-bold">
+                        <i class="fas fa-filter me-2"></i>
+                        Bộ Lọc Tìm Kiếm
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <form asp-action="SearchCars" method="get">
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label asp-for="CarType" class="form-label">Loại Xe</label>
+                                <select asp-for="CarType" class="form-control">
+                                    <option value="">Tất cả loại xe</option>
+                                    <option value="4 chỗ">4 chỗ</option>
+                                    <option value="7 chỗ">7 chỗ</option>
+                                    <option value="16 chỗ">16 chỗ</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label asp-for="Brand" class="form-label">Thương Hiệu</label>
+                                <input asp-for="Brand" class="form-control" placeholder="VD: Toyota, Honda..." />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label asp-for="MinYear" class="form-label">Năm Từ</label>
+                                <input asp-for="MinYear" type="number" class="form-control" min="2000" max="2024" />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label asp-for="MaxYear" class="form-label">Năm Đến</label>
+                                <input asp-for="MaxYear" type="number" class="form-control" min="2000" max="2024" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="StartDate" class="form-label">Ngày Nhận Xe</label>
+                                <input asp-for="StartDate" type="date" class="form-control" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="EndDate" class="form-label">Ngày Trả Xe</label>
+                                <input asp-for="EndDate" type="date" class="form-control" />
+                            </div>
+                            <div class="col-md-4 mb-3 d-flex align-items-end">
+                                <button type="submit" class="btn btn-primary w-100">
+                                    <i class="fas fa-search me-2"></i>
+                                    Tìm Kiếm
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Results -->
+    @if (Model.Cars.Any())
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0">
+                        <i class="fas fa-car me-2"></i>
+                        Kết Quả Tìm Kiếm (@Model.Cars.Count xe)
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            @foreach (var car in Model.Cars)
+            {
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                            @if (!string.IsNullOrEmpty(car.ImageUrl))
+                            {
+                                <img src="@car.ImageUrl" class="img-fluid" style="max-height: 100%; max-width: 100%; object-fit: contain;" alt="@car.Name" />
+                            }
+                            else
+                            {
+                                <i class="fas fa-car fa-3x text-muted"></i>
+                            }
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@car.Name</h5>
+                            <p class="card-text text-muted small">
+                                <i class="fas fa-tag me-1"></i> @car.Brand @car.Model<br>
+                                <i class="fas fa-calendar me-1"></i> Năm @car.Year<br>
+                                <i class="fas fa-users me-1"></i> @car.Seats chỗ<br>
+                                <i class="fas fa-gas-pump me-1"></i> @car.FuelType
+                            </p>
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="h5 text-primary mb-0">@car.PricePerDay.ToString("N0") VNĐ/ngày</span>
+                                    <span class="badge bg-success">Có sẵn</span>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <a asp-action="CarDetails" asp-route-id="@car.Id" class="btn btn-outline-primary btn-sm">
+                                        <i class="fas fa-eye me-1"></i>
+                                        Xem Chi Tiết
+                                    </a>
+                                    <a asp-action="CreateBooking" asp-route-carId="@car.Id" class="btn btn-primary btn-sm">
+                                        <i class="fas fa-calendar-plus me-1"></i>
+                                        Đặt Xe
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else if (Model.CarType != null || Model.Brand != null || Model.MinYear.HasValue || Model.MaxYear.HasValue || Model.StartDate.HasValue || Model.EndDate.HasValue)
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-body text-center py-5">
+                        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">Không tìm thấy xe phù hợp</h5>
+                        <p class="text-muted">Hãy thử thay đổi các tiêu chí tìm kiếm</p>
+                        <a asp-action="SearchCars" class="btn btn-primary">
+                            <i class="fas fa-refresh me-2"></i>
+                            Tìm Lại
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-body text-center py-5">
+                        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">Nhập tiêu chí tìm kiếm</h5>
+                        <p class="text-muted">Sử dụng bộ lọc phía trên để tìm xe phù hợp</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

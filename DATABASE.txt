@@ -1,0 +1,127 @@
+CREATE DATABASE QuanLyThueXe;
+GO
+Use QuanLyThueXe;
+GO
+-- 1. Bảng KhachHang (Khách hàng)
+CREATE TABLE KhachHang (
+    MaKH INT PRIMARY KEY IDENTITY(1,1),
+    TenKH NVARCHAR(100) NOT NULL, -- Dùng NVARCHAR cho tiếng Việt
+    SoDienThoai VARCHAR(15) UNIQUE NOT NULL,
+    CMND VARCHAR(12) UNIQUE NOT NULL,
+    DiaChiHoKhau NVARCHAR(MAX),    -- Dùng NVARCHAR(MAX) cho địa chỉ dài
+    GiayGioiThieu NVARCHAR(MAX)
+);
+
+-- 2. Bảng NhanVien (Nhân viên)
+CREATE TABLE NhanVien (
+    MaNV INT PRIMARY KEY IDENTITY(1,1),
+    TenNV NVARCHAR(100) NOT NULL,
+    BoPhan NVARCHAR(50) NOT NULL DEFAULT N'Kế toán', -- Dùng N'Kế toán' cho tiếng Việt
+    SoDienThoai VARCHAR(15)
+);
+
+-- 3. Bảng LoaiXe (Loại xe)
+CREATE TABLE LoaiXe (
+    MaLoaiXe INT PRIMARY KEY IDENTITY(1,1),
+    TenLoaiXe NVARCHAR(50) NOT NULL, -- Ví dụ: N'Xe 4 chỗ', N'Xe 16 chỗ'
+    SoCho INT NOT NULL
+);
+
+-- 4. Bảng BangGia (Bảng báo giá)
+CREATE TABLE BangGia (
+    MaGia INT PRIMARY KEY IDENTITY(1,1),
+    MaLoaiXe INT NOT NULL,
+    DonGiaTheoNgay DECIMAL(10, 2) NOT NULL,
+    NgayApDung DATE NOT NULL,
+    FOREIGN KEY (MaLoaiXe) REFERENCES LoaiXe(MaLoaiXe)
+);
+
+-- 5. Bảng Xe (Xe)
+CREATE TABLE Xe (
+    BienSoXe VARCHAR(15) PRIMARY KEY, -- Biển số xe là định danh duy nhất
+    MaLoaiXe INT NOT NULL,
+    TrangThai NVARCHAR(30) NOT NULL, -- Ví dụ: N'Sẵn sàng', N'Đang cho thuê', N'Bảo trì'
+    MoTaThem NVARCHAR(MAX),          -- (Tùy chọn: màu sắc, đời xe,...)
+    FOREIGN KEY (MaLoaiXe) REFERENCES LoaiXe(MaLoaiXe)
+);
+
+-- 6. Bảng PhieuDatXe (Phiếu đặt xe)
+CREATE TABLE PhieuDatXe (
+    MaDatXe INT PRIMARY KEY IDENTITY(1,1),
+    MaKH INT NOT NULL,
+    MaLoaiXe INT NOT NULL,
+    NgayDat DATETIME NOT NULL,
+    TrangThaiDat NVARCHAR(30) NOT NULL, -- Ví dụ: N'Chờ xử lý', N'Đã liên hệ', N'Đã huỷ'
+    FOREIGN KEY (MaKH) REFERENCES KhachHang(MaKH),
+    FOREIGN KEY (MaLoaiXe) REFERENCES LoaiXe(MaLoaiXe)
+);
+
+-- 7. Bảng HopDong (Hợp đồng)
+CREATE TABLE HopDong (
+    MaHopDong INT PRIMARY KEY IDENTITY(1,1),
+    MaKH INT NOT NULL,
+    MaNV INT NOT NULL,
+    MaDatXe INT NULL,
+    NgayLap DATETIME NOT NULL,
+    NgayNhanXe DATETIME NOT NULL,
+    NgayTraDuKien DATETIME NOT NULL,
+    NgayTraThucTe DATETIME NULL,
+    DiaDiemNhan NVARCHAR(MAX) NOT NULL,
+    DiaDiemTra NVARCHAR(MAX) NOT NULL,
+    TienDatCoc DECIMAL(10, 2) NOT NULL,
+    TongTien DECIMAL(10, 2),
+    TrangThaiHopDong NVARCHAR(30) NOT NULL, -- Ví dụ: N'Đã cọc', N'Đang thuê', N'Đã tất toán'
+    FOREIGN KEY (MaKH) REFERENCES KhachHang(MaKH),
+    FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNV),
+    FOREIGN KEY (MaDatXe) REFERENCES PhieuDatXe(MaDatXe)
+);
+
+-- 8. Bảng ChiTietHopDong (Chi tiết hợp đồng)
+CREATE TABLE ChiTietHopDong (
+    MaHopDong INT NOT NULL,
+    BienSoXe VARCHAR(15) NOT NULL,
+    DonGiaThueTaiThoiDiem DECIMAL(10, 2) NOT NULL,
+    PRIMARY KEY (MaHopDong, BienSoXe),
+    FOREIGN KEY (MaHopDong) REFERENCES HopDong(MaHopDong),
+    FOREIGN KEY (BienSoXe) REFERENCES Xe(BienSoXe)
+);
+
+-- 9. Bảng HoaDon (Hóa đơn thanh toán)
+CREATE TABLE HoaDon (
+    MaHoaDon INT PRIMARY KEY IDENTITY(1,1),
+    MaHopDong INT NOT NULL,
+    MaNV INT NOT NULL,
+    NgayThanhToan DATETIME NOT NULL,
+    SoTien DECIMAL(10, 2) NOT NULL,
+    LoaiThanhToan NVARCHAR(50) NOT NULL, -- Ví dụ: N'Đặt cọc 50%', N'Tất toán'
+    FOREIGN KEY (MaHopDong) REFERENCES HopDong(MaHopDong),
+    FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNV)
+);
+
+-- Bảng Users để lưu thông tin đăng nhập và vai trò chung
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY IDENTITY(1,1),
+    Username NVARCHAR(50) UNIQUE NOT NULL,
+    PasswordHash NVARCHAR(256) NOT NULL, -- Lưu trữ password đã hash
+    Role NVARCHAR(20) NOT NULL,          -- Ví dụ: 'Admin', 'NhanVien', 'KhachHang'
+    IsActive BIT NOT NULL DEFAULT 1      -- Trạng thái hoạt động của tài khoản
+);
+
+-- Cập nhật bảng NhanVien để liên kết với Users
+ALTER TABLE NhanVien
+ADD UserID INT NULL; -- Hoặc NOT NULL nếu mỗi nhân viên bắt buộc phải có tài khoản
+
+ALTER TABLE NhanVien
+ADD CONSTRAINT FK_NhanVien_Users
+FOREIGN KEY (UserID) REFERENCES Users(UserID);
+
+-- Cập nhật bảng KhachHang để liên kết với Users
+ALTER TABLE KhachHang
+ADD UserID INT NULL; -- Hoặc NOT NULL nếu mỗi khách hàng bắt buộc phải có tài khoản
+
+ALTER TABLE KhachHang
+ADD CONSTRAINT FK_KhachHang_Users
+FOREIGN KEY (UserID) REFERENCES Users(UserID);
+
+SELECT * FROM Users
+SELECT * FROM HoaDon

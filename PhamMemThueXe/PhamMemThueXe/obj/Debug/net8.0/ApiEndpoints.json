@@ -1,0 +1,1032 @@
+[
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.AdminApiController",
+    "Method": "GetAccountants",
+    "RelativePath": "api/AdminApi/accountants",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.AdminApiController",
+    "Method": "CreateAccountant",
+    "RelativePath": "api/AdminApi/accountants",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "PhamMemThueXe.Models.CreateAccountantViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.AdminApiController",
+    "Method": "GetAccountant",
+    "RelativePath": "api/AdminApi/accountants/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.AdminApiController",
+    "Method": "UpdateAccountant",
+    "RelativePath": "api/AdminApi/accountants/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "PhamMemThueXe.Models.CreateAccountantViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.AdminApiController",
+    "Method": "DeleteAccountant",
+    "RelativePath": "api/AdminApi/accountants/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.AdminApiController",
+    "Method": "GetStatistics",
+    "RelativePath": "api/AdminApi/statistics",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.AuthApiController",
+    "Method": "CheckAuth",
+    "RelativePath": "api/AuthApi/check-auth",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.AuthApiController",
+    "Method": "Login",
+    "RelativePath": "api/AuthApi/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "PhamMemThueXe.Models.LoginRequestModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.AuthApiController",
+    "Method": "Logout",
+    "RelativePath": "api/AuthApi/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.AuthApiController",
+    "Method": "GetCurrentUser",
+    "RelativePath": "api/AuthApi/me",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.AuthApiController",
+    "Method": "Register",
+    "RelativePath": "api/AuthApi/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "PhamMemThueXe.Models.RegisterViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.BangGiaApiController",
+    "Method": "GetBangGias",
+    "RelativePath": "api/BangGiaApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.BangGiaApiController",
+    "Method": "CreateBangGia",
+    "RelativePath": "api/BangGiaApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bangGia",
+        "Type": "PhamMemThueXe.Models.BangGia",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.BangGiaApiController",
+    "Method": "GetBangGia",
+    "RelativePath": "api/BangGiaApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.BangGiaApiController",
+    "Method": "UpdateBangGia",
+    "RelativePath": "api/BangGiaApi/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "bangGia",
+        "Type": "PhamMemThueXe.Models.BangGia",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.BangGiaApiController",
+    "Method": "DeleteBangGia",
+    "RelativePath": "api/BangGiaApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.BangGiaApiController",
+    "Method": "GetBangGiasByLoaiXe",
+    "RelativePath": "api/BangGiaApi/by-type/{loaiXeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loaiXeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.BangGiaApiController",
+    "Method": "GetCurrentPrices",
+    "RelativePath": "api/BangGiaApi/current",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.BangGiaApiController",
+    "Method": "GetCurrentPriceForLoaiXe",
+    "RelativePath": "api/BangGiaApi/price-for-type/{loaiXeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loaiXeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.BangGiaApiController",
+    "Method": "UpdatePriceForLoaiXe",
+    "RelativePath": "api/BangGiaApi/update-price",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "PhamMemThueXe.Controllers.UpdatePriceRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.HoaDonApiController",
+    "Method": "GetHoaDons",
+    "RelativePath": "api/HoaDonApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.HoaDonApiController",
+    "Method": "CreateHoaDon",
+    "RelativePath": "api/HoaDonApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "PhamMemThueXe.Controllers.CreateHoaDonRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.HoaDonApiController",
+    "Method": "GetHoaDon",
+    "RelativePath": "api/HoaDonApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.HoaDonApiController",
+    "Method": "GetHoaDonsByContract",
+    "RelativePath": "api/HoaDonApi/by-contract/{contractId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "contractId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.HoaDonApiController",
+    "Method": "GetHoaDonsByCustomer",
+    "RelativePath": "api/HoaDonApi/by-customer/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.HoaDonApiController",
+    "Method": "GetPaymentSummary",
+    "RelativePath": "api/HoaDonApi/payment-summary/{contractId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "contractId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.HoaDonApiController",
+    "Method": "GetHoaDonStatistics",
+    "RelativePath": "api/HoaDonApi/statistics",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.HopDongApiController",
+    "Method": "GetHopDongs",
+    "RelativePath": "api/HopDongApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.HopDongApiController",
+    "Method": "CreateHopDong",
+    "RelativePath": "api/HopDongApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "PhamMemThueXe.Controllers.CreateHopDongRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.HopDongApiController",
+    "Method": "GetHopDong",
+    "RelativePath": "api/HopDongApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.HopDongApiController",
+    "Method": "UpdateHopDongStatus",
+    "RelativePath": "api/HopDongApi/{id}/status",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "PhamMemThueXe.Controllers.UpdateHopDongStatusRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.HopDongApiController",
+    "Method": "GetHopDongsByCustomer",
+    "RelativePath": "api/HopDongApi/by-customer/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.HopDongApiController",
+    "Method": "GetHopDongsByStatus",
+    "RelativePath": "api/HopDongApi/by-status/{status}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "status",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.HopDongApiController",
+    "Method": "GetHopDongsByUsername",
+    "RelativePath": "api/HopDongApi/by-username/{username}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "username",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.HopDongApiController",
+    "Method": "GetHopDongStatistics",
+    "RelativePath": "api/HopDongApi/statistics",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.KhachHangApiController",
+    "Method": "GetKhachHangs",
+    "RelativePath": "api/KhachHangApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.KhachHangApiController",
+    "Method": "CreateKhachHang",
+    "RelativePath": "api/KhachHangApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "khachHang",
+        "Type": "PhamMemThueXe.Models.KhachHang",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.KhachHangApiController",
+    "Method": "GetKhachHang",
+    "RelativePath": "api/KhachHangApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.KhachHangApiController",
+    "Method": "UpdateKhachHang",
+    "RelativePath": "api/KhachHangApi/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "khachHang",
+        "Type": "PhamMemThueXe.Models.KhachHang",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.KhachHangApiController",
+    "Method": "DeleteKhachHang",
+    "RelativePath": "api/KhachHangApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.KhachHangApiController",
+    "Method": "GetKhachHangContracts",
+    "RelativePath": "api/KhachHangApi/{id}/contracts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.KhachHangApiController",
+    "Method": "GetKhachHangByCMND",
+    "RelativePath": "api/KhachHangApi/by-cmnd/{cmnd}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cmnd",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.KhachHangApiController",
+    "Method": "SearchKhachHangs",
+    "RelativePath": "api/KhachHangApi/search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "keyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.LoaiXeApiController",
+    "Method": "GetLoaiXes",
+    "RelativePath": "api/LoaiXeApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.LoaiXeApiController",
+    "Method": "CreateLoaiXe",
+    "RelativePath": "api/LoaiXeApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loaiXe",
+        "Type": "PhamMemThueXe.Models.LoaiXe",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.LoaiXeApiController",
+    "Method": "GetLoaiXe",
+    "RelativePath": "api/LoaiXeApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.LoaiXeApiController",
+    "Method": "UpdateLoaiXe",
+    "RelativePath": "api/LoaiXeApi/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "loaiXe",
+        "Type": "PhamMemThueXe.Models.LoaiXe",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.LoaiXeApiController",
+    "Method": "DeleteLoaiXe",
+    "RelativePath": "api/LoaiXeApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.LoaiXeApiController",
+    "Method": "GetPricesByLoaiXe",
+    "RelativePath": "api/LoaiXeApi/{id}/prices",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.LoaiXeApiController",
+    "Method": "GetXesByLoaiXe",
+    "RelativePath": "api/LoaiXeApi/{id}/xes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.PhieuDatXeApiController",
+    "Method": "GetPhieuDatXes",
+    "RelativePath": "api/PhieuDatXeApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.PhieuDatXeApiController",
+    "Method": "CreatePhieuDatXe",
+    "RelativePath": "api/PhieuDatXeApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "PhamMemThueXe.Controllers.CreatePhieuDatXeRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.PhieuDatXeApiController",
+    "Method": "GetPhieuDatXe",
+    "RelativePath": "api/PhieuDatXeApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.PhieuDatXeApiController",
+    "Method": "DeletePhieuDatXe",
+    "RelativePath": "api/PhieuDatXeApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.PhieuDatXeApiController",
+    "Method": "UpdatePhieuDatXeStatus",
+    "RelativePath": "api/PhieuDatXeApi/{id}/status",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "PhamMemThueXe.Controllers.UpdatePhieuDatXeStatusRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.PhieuDatXeApiController",
+    "Method": "GetPhieuDatXesByCustomer",
+    "RelativePath": "api/PhieuDatXeApi/by-customer/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.PhieuDatXeApiController",
+    "Method": "GetPhieuDatXesByStatus",
+    "RelativePath": "api/PhieuDatXeApi/by-status/{status}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "status",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.PhieuDatXeApiController",
+    "Method": "GetPhieuDatXesByUsername",
+    "RelativePath": "api/PhieuDatXeApi/by-username/{username}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "username",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.SystemApiController",
+    "Method": "GetSystemHealth",
+    "RelativePath": "api/SystemApi/health",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.SystemApiController",
+    "Method": "GetSystemInfo",
+    "RelativePath": "api/SystemApi/info",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.SystemApiController",
+    "Method": "GetSystemStats",
+    "RelativePath": "api/SystemApi/stats",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.XeApiController",
+    "Method": "GetXes",
+    "RelativePath": "api/XeApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.XeApiController",
+    "Method": "CreateXe",
+    "RelativePath": "api/XeApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "xe",
+        "Type": "PhamMemThueXe.Models.Xe",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.XeApiController",
+    "Method": "GetXe",
+    "RelativePath": "api/XeApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.XeApiController",
+    "Method": "UpdateXe",
+    "RelativePath": "api/XeApi/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "xe",
+        "Type": "PhamMemThueXe.Models.Xe",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.XeApiController",
+    "Method": "DeleteXe",
+    "RelativePath": "api/XeApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.XeApiController",
+    "Method": "UpdateXeStatus",
+    "RelativePath": "api/XeApi/{id}/status",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "PhamMemThueXe.Controllers.UpdateXeStatusRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.XeApiController",
+    "Method": "GetAvailableXes",
+    "RelativePath": "api/XeApi/available",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PhamMemThueXe.Controllers.XeApiController",
+    "Method": "GetXesByType",
+    "RelativePath": "api/XeApi/by-type/{loaiXeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loaiXeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

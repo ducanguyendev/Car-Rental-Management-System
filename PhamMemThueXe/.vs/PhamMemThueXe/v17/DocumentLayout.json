@@ -1,0 +1,386 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\controllers\\hoadonapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\controllers\\hoadonapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\api_documentation.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\api_documentation.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\api_checklist.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\api_checklist.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\controllers\\authapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\controllers\\authapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\models\\models.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\models\\models.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\controllers\\loaixeapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\controllers\\loaixeapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\controllers\\xeapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\controllers\\xeapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\controllers\\banggiaapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\controllers\\banggiaapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\controllers\\systemapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\controllers\\systemapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\controllers\\phieudatxeapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\controllers\\phieudatxeapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\controllers\\khachhangapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\controllers\\khachhangapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\controllers\\adminapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\controllers\\adminapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\LAPTRINHVIPPRO\\CNPMNC\\ThueXeClient\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|c:\\laptrinhvippro\\phammemthuexe\\phammemthuexe\\controllers\\hopdongapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00386746-4D54-436D-9A98-37AF88FCBAD9}|PhamMemThueXe\\PhamMemThueXe.csproj|solutionrelative:phammemthuexe\\controllers\\hopdongapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 11,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "API_CHECKLIST.md",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\API_CHECKLIST.md",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\API_CHECKLIST.md",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\API_CHECKLIST.md",
+              "RelativeToolTip": "PhamMemThueXe\\API_CHECKLIST.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACwBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-10-31T08:48:17.75Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\appsettings.json",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\appsettings.json",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\appsettings.json",
+              "RelativeToolTip": "PhamMemThueXe\\appsettings.json",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAIAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-31T05:05:35.663Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "SystemApiController.cs",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\SystemApiController.cs",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\Controllers\\SystemApiController.cs",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\SystemApiController.cs",
+              "RelativeToolTip": "PhamMemThueXe\\Controllers\\SystemApiController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T10:30:57.054Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "PhamMemThueXe\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAAAC0AAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T10:30:16.9Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "index.html",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\CNPMNC\\ThueXeClient\\index.html",
+              "RelativeDocumentMoniker": "..\\CNPMNC\\ThueXeClient\\index.html",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\CNPMNC\\ThueXeClient\\index.html",
+              "RelativeToolTip": "..\\CNPMNC\\ThueXeClient\\index.html",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-10-29T09:16:24.001Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Models.cs",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Models\\Models.cs",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\Models\\Models.cs",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Models\\Models.cs",
+              "RelativeToolTip": "PhamMemThueXe\\Models\\Models.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAAwAQAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T08:38:34.786Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "CustomerController.cs",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\CustomerController.cs",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\Controllers\\CustomerController.cs",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\CustomerController.cs",
+              "RelativeToolTip": "PhamMemThueXe\\Controllers\\CustomerController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T08:25:32.203Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "XeApiController.cs",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\XeApiController.cs",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\Controllers\\XeApiController.cs",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\XeApiController.cs",
+              "RelativeToolTip": "PhamMemThueXe\\Controllers\\XeApiController.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAD4v1MAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T08:23:39.855Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "PhamMemThueXe\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAswBEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T08:23:27.085Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Program.cs",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\Program.cs",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Program.cs",
+              "RelativeToolTip": "PhamMemThueXe\\Program.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAmwDoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T08:18:36.988Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "PhamMemThueXe\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T08:09:42.857Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Views\\Auth\\Login.cshtml",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\Views\\Auth\\Login.cshtml",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Views\\Auth\\Login.cshtml",
+              "RelativeToolTip": "PhamMemThueXe\\Views\\Auth\\Login.cshtml",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAAADEAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-29T07:47:39.963Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "API_Documentation.md",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\API_Documentation.md",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\API_Documentation.md",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\API_Documentation.md",
+              "RelativeToolTip": "PhamMemThueXe\\API_Documentation.md",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAAwAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-10-29T07:24:42.611Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Microsoft.Common.CurrentVersion.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeDocumentMoniker": "..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeToolTip": "..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ViewState": "AgIAAAIVAAAAAAAAAAApwBEVAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-10-29T07:21:13.277Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Properties\\launchSettings.json",
+              "RelativeToolTip": "PhamMemThueXe\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA8AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-29T07:04:45.589Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "PhieuDatXeApiController.cs",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\PhieuDatXeApiController.cs",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\Controllers\\PhieuDatXeApiController.cs",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\PhieuDatXeApiController.cs",
+              "RelativeToolTip": "PhamMemThueXe\\Controllers\\PhieuDatXeApiController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T06:54:58.026Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "LoaiXeApiController.cs",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\LoaiXeApiController.cs",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\Controllers\\LoaiXeApiController.cs",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\LoaiXeApiController.cs",
+              "RelativeToolTip": "PhamMemThueXe\\Controllers\\LoaiXeApiController.cs",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAgwA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T06:54:57.476Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "KhachHangApiController.cs",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\KhachHangApiController.cs",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\Controllers\\KhachHangApiController.cs",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\KhachHangApiController.cs",
+              "RelativeToolTip": "PhamMemThueXe\\Controllers\\KhachHangApiController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T06:54:56.635Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HoaDonApiController.cs",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\HoaDonApiController.cs",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\Controllers\\HoaDonApiController.cs",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\HoaDonApiController.cs",
+              "RelativeToolTip": "PhamMemThueXe\\Controllers\\HoaDonApiController.cs",
+              "ViewState": "AgIAAMAAAAAAAAAAAAAAAMoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T06:54:51.902Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "BangGiaApiController.cs",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\BangGiaApiController.cs",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\Controllers\\BangGiaApiController.cs",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\BangGiaApiController.cs",
+              "RelativeToolTip": "PhamMemThueXe\\Controllers\\BangGiaApiController.cs",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAowFEAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T06:54:49.039Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AuthApiController.cs",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\AuthApiController.cs",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\Controllers\\AuthApiController.cs",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\AuthApiController.cs",
+              "RelativeToolTip": "PhamMemThueXe\\Controllers\\AuthApiController.cs",
+              "ViewState": "AgIAAIsAAAAAAAAAAAA1wNQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T06:54:45.995Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "HopDongApiController.cs",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\HopDongApiController.cs",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\Controllers\\HopDongApiController.cs",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\HopDongApiController.cs",
+              "RelativeToolTip": "PhamMemThueXe\\Controllers\\HopDongApiController.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAmwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T06:54:41.563Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AdminApiController.cs",
+              "DocumentMoniker": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\AdminApiController.cs",
+              "RelativeDocumentMoniker": "PhamMemThueXe\\Controllers\\AdminApiController.cs",
+              "ToolTip": "C:\\LAPTRINHVIPPRO\\PhamMemThueXe\\PhamMemThueXe\\Controllers\\AdminApiController.cs",
+              "RelativeToolTip": "PhamMemThueXe\\Controllers\\AdminApiController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAqwBUAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T06:54:29.706Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
